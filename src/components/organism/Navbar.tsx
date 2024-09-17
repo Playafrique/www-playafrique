@@ -3,18 +3,21 @@
 import { usePathname } from 'next/navigation'
 import React from 'react'
 import Heading from '../atoms/Heading'
+import { Button, buttonVariants } from '../ui/button'
+import { Heart, ShoppingCart } from 'lucide-react'
+import Link from 'next/link'
 
 function Navbar() {
     const pathname = usePathname()
 
     const excludePaths = ['/login', '/register', '/studio']
 
-    if (excludePaths.includes(pathname)) {
+    if (excludePaths.includes(pathname) || pathname.includes('/studio')) {
         return null
     }
     return (
         <nav className='h-20 bg-orange-50 w-full'>
-            <div className='container mx-auto h-full flex justify-between items-center'>
+            <div className='max-w-screen-2xl mx-auto h-full flex justify-between items-center px-6 xl:px-0'>
                 <div className='flex space-x-6 items-center'>
                     <a
                         href='#'
@@ -47,12 +50,24 @@ function Navbar() {
                         Register
                     </a>
 
-                    <button className='bg-orange-500 text-white px-4 py-2 rounded'>
-                        Wishlist
-                    </button>
-                    <button className='bg-orange-500 text-white px-4 py-2 rounded'>
-                        Basket
-                    </button>
+                    <div className='flex items-center gap-2'>
+                        <Link
+                            href='/wishlist'
+                            className={buttonVariants({
+                                size: 'icon',
+                                variant: 'outline',
+                            })}>
+                            <Heart size={20} className='text-black' />
+                        </Link>
+                        <Link
+                            href='/shopping-basket'
+                            className={buttonVariants({
+                                size: 'icon',
+                                variant: 'outline',
+                            })}>
+                            <ShoppingCart size={20} className='text-black' />
+                        </Link>
+                    </div>
                 </div>
             </div>
         </nav>

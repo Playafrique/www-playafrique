@@ -4,7 +4,7 @@ import BreadCrumbs from '@/components/organism/BreadCrumbs'
 import React from 'react'
 import Text from '@/components/atoms/Text'
 import { Button } from '@/components/ui/button'
-import { ShoppingBasket } from 'lucide-react'
+import { ShoppingCart } from 'lucide-react'
 
 function ProductPage({ params }: { params: { slug: string } }) {
     console.log(params.slug)
@@ -22,13 +22,11 @@ function ProductPage({ params }: { params: { slug: string } }) {
                                     )}
                                     keyExtractor={(i) => i}>
                                     {(i) => (
-                                        <div className='w-full'>
-                                            <div className='w-full h-48 object-cover bg-orange-100' />
-                                        </div>
+                                        <div className='w-full h-48 object-cover bg-orange-100 rounded-md' />
                                     )}
                                 </ListWrapper>
                             </div>
-                            <div className='w-3/4 h-full min-h-[70vh] bg-orange-100'>
+                            <div className='w-3/4 h-full min-h-[70vh] bg-orange-100 rounded-lg p-20'>
                                 image
                             </div>
                         </div>
@@ -48,7 +46,7 @@ function ProductPage({ params }: { params: { slug: string } }) {
                             <Button
                                 className='h-16 w-16 rounded-md'
                                 aria-label='Add to basket'>
-                                <ShoppingBasket size={24} />
+                                <ShoppingCart size={24} />
                             </Button>
                         </div>
 

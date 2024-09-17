@@ -9,7 +9,7 @@ function Footer() {
 
     const excludePaths = ['/login', '/register', '/studio']
 
-    if (excludePaths.includes(pathname)) {
+    if (excludePaths.includes(pathname) || pathname.includes('/studio')) {
         return null
     }
     return (

@@ -2,7 +2,7 @@ import Heading from '@/components/atoms/Heading'
 import ListWrapper from '@/components/atoms/ListWrapper'
 import Text from '@/components/atoms/Text'
 import { Button } from '@/components/ui/button'
-import { ShoppingBasket } from 'lucide-react'
+import { ShoppingCart } from 'lucide-react'
 import Link from 'next/link'
 
 export default function Home() {
@@ -23,8 +23,8 @@ export default function Home() {
                 </div>
             </section>
             {/* Featured */}
-            <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  h-96'>
-                <div className='bg-orange-50 p-10 h-full col-span-1 space-y-2 border-r border-r-gray-300'>
+            <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 h-auto min-h-96'>
+                <div className='bg-orange-50 p-10 h-full col-span-1 border-r border-r-gray-300 space-y-2'>
                     <Heading as='h4' className='uppercase font-semibold '>
                         Featured
                     </Heading>
@@ -33,7 +33,7 @@ export default function Home() {
                         the most.
                     </Text>
                 </div>
-                <div className='bg-orange-50 col-span-3 grid grid-cols-4 h-full'>
+                <div className='bg-orange-50 col-span-3 grid grid-cols-4 h-full gap-y-4'>
                     <ListWrapper
                         list={Array.from({ length: 4 }).map((_, i) => i)}
                         keyExtractor={(item) => item}>
@@ -41,7 +41,7 @@ export default function Home() {
                             <Link
                                 href='/product/[slug]'
                                 as={`/product/${item}`}>
-                                <div className='h-full bg-orange-50 flex flex-col items-center justify-between border-r border-r-gray-300 '>
+                                <div className='bg-orange-50 flex flex-col items-center justify-between border-r border-r-gray-300 h-96 '>
                                     <div className='h-1/5'>
                                         {/* badges come here */}
                                     </div>
@@ -50,7 +50,7 @@ export default function Home() {
                                         The image {item}
                                     </div>
 
-                                    <div className='w-full p-4 flex items-center justify-between h-1/5'>
+                                    <div className='w-full px-8 flex items-center justify-between h-1/5'>
                                         <div>
                                             <Heading
                                                 as='h5'
@@ -61,8 +61,10 @@ export default function Home() {
                                                 £65
                                             </Text>
                                         </div>
-                                        <Button className='h-12 w-12 rounded-sm p-2'>
-                                            <ShoppingBasket size={24} />
+                                        <Button
+                                            className='rounded-sm'
+                                            size='icon'>
+                                            <ShoppingCart size={20} />
                                         </Button>
                                     </div>
                                 </div>
