@@ -1,7 +1,7 @@
 import { cva, type VariantProps } from 'class-variance-authority'
 import { createElement } from 'react'
 
-const HeadingVariants = cva('font-sans text-primary', {
+const HeadingVariants = cva('font-sans text-slate-800', {
     variants: {
         as: {
             h1: 'text-4xl font-bold',

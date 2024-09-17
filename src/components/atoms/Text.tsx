@@ -1,7 +1,7 @@
 import { cva, type VariantProps } from 'class-variance-authority'
 import { createElement } from 'react'
 
-const TextVariants = cva('font-sans', {
+const TextVariants = cva('font-sans text-brand-dark', {
     variants: {
         as: {
             p: 'text-base',

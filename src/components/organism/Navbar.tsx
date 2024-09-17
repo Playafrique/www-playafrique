@@ -2,6 +2,7 @@
 
 import { usePathname } from 'next/navigation'
 import React from 'react'
+import Heading from '../atoms/Heading'
 
 function Navbar() {
     const pathname = usePathname()
@@ -32,7 +33,7 @@ function Navbar() {
                     </a>
                 </div>
                 <div className='text-2xl font-bold text-orange-500'>
-                    Essential Oils
+                    <Heading as='h1'>Essential Oils</Heading>
                 </div>
                 <div className='flex space-x-4 items-center'>
                     <a
