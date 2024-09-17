@@ -1,6 +1,8 @@
 import Heading from '@/components/atoms/Heading'
 import ListWrapper from '@/components/atoms/ListWrapper'
 import Text from '@/components/atoms/Text'
+import Paginate from '@/components/molecules/Paginate'
+import ProductCard from '@/components/organism/ProductCard'
 import { Button } from '@/components/ui/button'
 import { ShoppingCart } from 'lucide-react'
 import Link from 'next/link'
@@ -24,7 +26,7 @@ export default function Home() {
             </section>
             {/* Featured */}
             <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 h-auto min-h-96'>
-                <div className='bg-orange-50 p-10 h-full col-span-1 border-r border-r-gray-300 space-y-2'>
+                <div className='bg-orange-50 p-10 h-full col-span-1 border-r border-r-orange-200 space-y-2'>
                     <Heading as='h4' className='uppercase font-semibold '>
                         Featured
                     </Heading>
@@ -38,37 +40,10 @@ export default function Home() {
                         list={Array.from({ length: 4 }).map((_, i) => i)}
                         keyExtractor={(item) => item}>
                         {(item) => (
-                            <Link
-                                href='/product/[slug]'
-                                as={`/product/${item}`}>
-                                <div className='relative bg-orange-50 flex flex-col items-center justify-between border-r border-r-gray-300 h-96 '>
-                                    <div className='absolute top-0 left-0 w-full'>
-                                        {/* badges come here */}
-                                    </div>
-
-                                    <div className='flex-1 w-full bg-orange-100 p-10 h-3/4'>
-                                        The image {item}
-                                    </div>
-
-                                    <div className='w-full px-8 flex items-center justify-between h-1/4'>
-                                        <div>
-                                            <Heading
-                                                as='h5'
-                                                className='font-normal'>
-                                                Orange Citrus Oil
-                                            </Heading>
-                                            <Text className='font-semibold'>
-                                                £65
-                                            </Text>
-                                        </div>
-                                        <Button
-                                            className='rounded-sm'
-                                            size='icon'>
-                                            <ShoppingCart size={20} />
-                                        </Button>
-                                    </div>
-                                </div>
-                            </Link>
+                            <ProductCard
+                                product={{ slug: item.toString() }}
+                                className='border-r border-r-orange-200'
+                            />
                         )}
                     </ListWrapper>
                 </div>
@@ -90,39 +65,13 @@ export default function Home() {
                             list={Array.from({ length: 12 }).map((_, i) => i)}
                             keyExtractor={(item) => item}>
                             {(item) => (
-                                <Link
-                                    href='/product/[slug]'
-                                    as={`/product/${item}`}>
-                                    <div className='relative bg-orange-50 flex flex-col items-center justify-between h-96 shadow-sm rounded-md '>
-                                        <div className='absolute h-1/5'>
-                                            {/* badges come here */}
-                                        </div>
-
-                                        <div className='flex-1 w-full bg-orange-100 p-10 h-3/4'>
-                                            The image {item}
-                                        </div>
-
-                                        <div className='w-full px-8 flex items-center justify-between h-1/4'>
-                                            <div>
-                                                <Heading
-                                                    as='h5'
-                                                    className='font-normal'>
-                                                    Orange Citrus Oil
-                                                </Heading>
-                                                <Text className='font-semibold'>
-                                                    £65
-                                                </Text>
-                                            </div>
-                                            <Button
-                                                className='rounded-sm'
-                                                size='icon'>
-                                                <ShoppingCart size={20} />
-                                            </Button>
-                                        </div>
-                                    </div>
-                                </Link>
+                                <ProductCard
+                                    product={{ slug: item.toString() }}
+                                    className='rounded-md shadow-sm'
+                                />
                             )}
                         </ListWrapper>
+                        <Paginate />
                     </div>
                 </div>
             </section>
