@@ -6,7 +6,8 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
     title: 'Play Afrique',
-    description: 'Essential Oils',
+    description:
+        'From vibrant festivals to intimate gatherings, Play Afrique connects you to the heart of African culture and global happenings.',
 }
 
 type RootLayoutProps = {
