@@ -12,11 +12,11 @@ import { Suspense } from 'react'
 async function Home() {
     return (
         <main className='min-h-screen bg-gray-50 pb-16'>
-            <section id='hero' className='h-[60vh] w-full relative'>
-                <div className='flex flex-col items-center justify-center gap-6 absolute inset-0 backdrop-blur-sm text-white z-20 w-full py-16 h-full bg-black/50'>
+            <section id='hero' className='h-[65vh] w-full relative'>
+                <div className='flex flex-col items-center justify-center gap-8 absolute inset-0 backdrop-blur-sm text-white z-20 w-full py-16 h-full bg-black/50 px-6 2xl:px-0'>
                     <Heading
                         as='h1'
-                        className='text-5xl max-w-5xl text-center text-white'>
+                        className='text-2xl lg:text-5xl max-w-5xl text-center text-white'>
                         Experience the Pulse of Africa: Discover Events That
                         Inspire
                     </Heading>

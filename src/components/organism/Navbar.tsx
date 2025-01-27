@@ -3,7 +3,6 @@
 import React from 'react'
 import Link from 'next/link'
 import { Button } from '../ui/button'
-import { Dancing_Script } from 'next/font/google'
 import ListWrapper from '../atoms/ListWrapper'
 import Navlink from '../molecules/Navlink'
 import { usePathname } from 'next/navigation'
@@ -101,6 +100,7 @@ function MobileNav({ isHome }: { isHome?: boolean }) {
                     onToggle={onOpen}
                     direction='right'
                     color={isHome ? 'white' : 'black'}
+                    size={28}
                 />
             </SheetTrigger>
             <SheetContent
