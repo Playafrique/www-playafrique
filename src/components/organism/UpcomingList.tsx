@@ -11,6 +11,9 @@ async function UpcomingList() {
     const { res, error } = await invoke<{ data: EVENT[] }>({
         baseUrl: 'events',
         endpoint: '/event_series?limit=4',
+        options: {
+            headers: { 'Cache-Control': 'max-age=60' }, // revalidate every 60 seconds
+        },
     })
 
     if (error) {

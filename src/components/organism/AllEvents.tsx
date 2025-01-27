@@ -11,6 +11,9 @@ async function AllEvents() {
     const { res, error } = await invoke<{ data: EVENT[] }>({
         baseUrl: 'events',
         endpoint: '/event_series',
+        options: {
+            headers: { 'Cache-Control': 'max-age=60' }, // revalidate every
+        },
     })
 
     if (error) {
@@ -19,8 +22,6 @@ async function AllEvents() {
 
     const allEvents =
         res?.data.filter((evt) => evt.status === 'published') ?? []
-
-    console.log(allEvents.length)
 
     return (
         <section id='events' className='h-auto min-h-[30rem] md:py-28'>

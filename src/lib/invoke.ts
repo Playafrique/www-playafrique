@@ -30,7 +30,7 @@ export type InvokeOptions = {
     endpoint: string
     data?: Record<string, any>
     options?: {
-        headers?: AxiosRequestHeaders
+        headers?: AxiosRequestHeaders | Record<string, string>
     }
     useBaseUrl?: boolean
     baseUrl: BaseUrls
