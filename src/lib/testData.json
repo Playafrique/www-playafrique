@@ -1,0 +1,65 @@
+[
+    {
+        "id": "1",
+        "title": "Cape Town Jazz Festival",
+        "slug": "cape-town-jazz-festival",
+        "location": "Cape Town, South Africa",
+        "featured": true,
+        "mainImage": "/images/jazzfest.jpg",
+        "startDate": "2024-03-29T18:00:00"
+    },
+    {
+        "id": "2",
+        "title": "Lagos Fashion Week",
+        "slug": "lagos-fashion-week",
+        "location": "Lagos, Nigeria",
+        "featured": true,
+        "mainImage": "/images/fashionweek.jpg",
+        "startDate": "2024-10-25T10:30:00"
+    },
+    {
+        "id": "3",
+        "title": "Accra Food Festival",
+        "slug": "accra-food-festival",
+        "location": "Accra, Ghana",
+        "featured": true,
+        "mainImage": "/images/foodfest.jpg",
+        "startDate": "2024-08-17T12:00:00"
+    },
+    {
+        "id": "4",
+        "title": "Nairobi International Book Fair",
+        "slug": "nairobi-book-fair",
+        "location": "Nairobi, Kenya",
+        "featured": false,
+        "mainImage": "/images/bookfair.jpg",
+        "startDate": "2024-09-27T09:00:00"
+    },
+    {
+        "id": "5",
+        "title": "Sundance Film Festival",
+        "slug": "sundance-film-festival",
+        "location": "London, UK",
+        "featured": true,
+        "mainImage": "/images/filmfestival.jpg",
+        "startDate": "2024-07-15T17:00:00"
+    },
+    {
+        "id": "6",
+        "title": "Addis Ababa Cultural Gala",
+        "slug": "addis-ababa-cultural-gala",
+        "location": "Addis Ababa, Ethiopia",
+        "featured": false,
+        "mainImage": "/images/culturefest.jpg",
+        "startDate": "2024-11-12T19:00:00"
+    },
+    {
+        "id": "7",
+        "title": "Rwanda Tech Summit",
+        "slug": "rwanda-tech-summit",
+        "location": "Kigali, Rwanda",
+        "featured": false,
+        "mainImage": "/images/techsummit.jpg",
+        "startDate": "2024-06-21T08:00:00"
+    }
+]

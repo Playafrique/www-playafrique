@@ -1,28 +1,28 @@
-import type { Metadata } from "next";
-import { Quicksand } from "next/font/google";
-import "./globals.css";
-import Navbar from "@/components/organism/Navbar";
-import Footer from "@/components/organism/Footer";
+import './globals.css'
+import '@fontsource-variable/dancing-script';
+import '@fontsource-variable/montserrat';
 
-const quicksand = Quicksand({ subsets: ["latin"] });
+import type { Metadata } from 'next'
+import { Montserrat, Dancing_Script } from 'next/font/google'
+
+const dsfont = Dancing_Script({ subsets: ['latin'], display:'swap', variable: '--font-dancing-script' })
+const font = Montserrat({ subsets: ['latin'], display:'swap', variable: '--font-montserrat' })
 
 export const metadata: Metadata = {
-  title: "Essential Oils",
-  description: "Essential Oils",
-};
+    title: 'Play Afrique',
+    description: 'Essential Oils',
+}
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <html lang="en">
-        <body className={quicksand.className}>
-          <Navbar />
-          {children}
-          <Footer />
-        </body>
-    </html>
-  );
+type RootLayoutProps = {
+    children: React.ReactNode
+}
+
+export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
+    return (
+        <html lang='en-GB'>
+            <body className='font-sans'>
+                {children}
+            </body>
+        </html>
+    )
 }
