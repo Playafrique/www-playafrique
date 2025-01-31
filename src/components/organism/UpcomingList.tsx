@@ -7,13 +7,12 @@ import EventCard from './EventCard'
 import NoResultsFallback from '../molecules/NoResultsFallback'
 import { cn } from '@/lib/utils'
 
+export const revalidate = 60 // revalidate every 60 seconds
+
 async function UpcomingList() {
     const { res, error } = await invoke<{ data: EVENT[] }>({
         baseUrl: 'events',
         endpoint: '/event_series?limit=4',
-        options: {
-            headers: { 'Cache-Control': 'max-age=60' }, // revalidate every 60 seconds
-        },
     })
 
     if (error) {
@@ -46,7 +45,7 @@ async function UpcomingList() {
                             text='Event results not currently available'
                         />
                     )}
-                    keyExtractor={(evt) => evt.id}>
+                    keyExtractor={(evt) => evt?.id}>
                     {(event) => <EventCard variant='dark' event={event} />}
                 </ListWrapper>
             </div>
