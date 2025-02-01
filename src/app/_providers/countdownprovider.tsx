@@ -4,10 +4,11 @@ import type React from 'react'
 import { createContext, useState, useContext, useEffect } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import ReactConfetti from 'react-confetti'
-import { differenceInSeconds, format } from 'date-fns'
+import { differenceInSeconds, format, set } from 'date-fns'
 import Heading from '@/components/atoms/Heading'
 import Image from 'next/image'
 import Text from '@/components/atoms/Text'
+import { useWindowSize } from 'react-use'
 
 interface CountdownContextType {
     targetDate: Date | null
@@ -40,7 +41,6 @@ export const CountdownProvider: React.FC<CountdownProviderProps> = ({
     eventDescription,
 }) => {
     const [timeLeft, setTimeLeft] = useState<number | null>(() => {
-        if (!isProduction) return null
         if (targetDate > new Date()) {
             return differenceInSeconds(targetDate, new Date())
         }
@@ -50,7 +50,7 @@ export const CountdownProvider: React.FC<CountdownProviderProps> = ({
 
     useEffect(() => {
         // if time left is null and target date is in the past then return
-        if (timeLeft === null && targetDate < new Date()) return
+        if (timeLeft === null) return
 
         const updateCountdown = () => {
             const now = new Date()
@@ -58,10 +58,12 @@ export const CountdownProvider: React.FC<CountdownProviderProps> = ({
                 setTimeLeft(differenceInSeconds(targetDate, now))
             } else {
                 setTimeLeft(0)
+                setShowConfetti(true)
+
                 setTimeout(() => {
                     setTimeLeft(null)
-                    setShowConfetti(true)
-                }, 1000)
+                    setShowConfetti(false)
+                }, 10000)
             }
         }
 
@@ -69,7 +71,7 @@ export const CountdownProvider: React.FC<CountdownProviderProps> = ({
         const timer = setInterval(updateCountdown, 1000)
 
         return () => clearInterval(timer)
-    }, [targetDate, timeLeft])
+    }, [targetDate])
 
     const formatTime = (seconds: number) => {
         const days = Math.floor(seconds / (3600 * 24))
@@ -83,7 +85,7 @@ export const CountdownProvider: React.FC<CountdownProviderProps> = ({
     return (
         <CountdownContext.Provider value={{ targetDate, eventDescription }}>
             {children}
-            {isProduction && timeLeft !== null && timeLeft > 0 && (
+            {timeLeft !== null && timeLeft > 0 && (
                 <>
                     <AnimatePresence initial={false}>
                         {timeLeft !== null && (
@@ -160,15 +162,15 @@ export const CountdownProvider: React.FC<CountdownProviderProps> = ({
                             </div>
                         )}
                     </AnimatePresence>
-                    {showConfetti && (
-                        <ReactConfetti
-                            width={window.innerWidth}
-                            height={window.innerHeight}
-                            recycle={false}
-                            numberOfPieces={600}
-                        />
-                    )}
                 </>
+            )}
+            {showConfetti && (
+                <ReactConfetti
+                    width={window.innerWidth - 20}
+                    height={window.innerHeight - 20}
+                    recycle={true}
+                    numberOfPieces={500}
+                />
             )}
         </CountdownContext.Provider>
     )
