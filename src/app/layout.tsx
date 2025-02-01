@@ -3,6 +3,7 @@ import '@fontsource-variable/dancing-script'
 import '@fontsource-variable/montserrat'
 
 import type { Metadata } from 'next'
+import { CountdownProvider } from './_providers/countdownprovider'
 
 export const metadata: Metadata = {
     title: 'Play Afrique',
@@ -36,7 +37,11 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
                     sizes='32x32'
                 />
             </head>
-            <body className='font-sans'>{children}</body>
+            <body className='font-sans'>
+                <CountdownProvider targetDate={new Date('2025-02-01T13:30:00')}>
+                    {children}
+                </CountdownProvider>
+            </body>
         </html>
     )
 }
