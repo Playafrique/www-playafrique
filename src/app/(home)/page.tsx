@@ -47,13 +47,13 @@ async function Home() {
 
             <Suspense fallback={<div>Loading...</div>}>
                 <ErrorHandlerWrapper>
-                    <UpcomingList />
+                    <AllEvents />
                 </ErrorHandlerWrapper>
             </Suspense>
             <Aboutus />
             <Suspense fallback={<div>Loading...</div>}>
                 <ErrorHandlerWrapper>
-                    <AllEvents />
+                    <UpcomingList />
                 </ErrorHandlerWrapper>
             </Suspense>
         </main>
