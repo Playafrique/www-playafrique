@@ -3,6 +3,8 @@ import '@fontsource-variable/dancing-script'
 import '@fontsource-variable/montserrat'
 
 import type { Metadata } from 'next'
+import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import { CountdownProvider } from './_providers/countdownprovider'
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -68,6 +70,8 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
             <body className='font-sans'>
                 <CountdownProvider targetDate={new Date('2025-02-01T17:00:00')}>
                     {children}
+                    <Analytics />
+                    <SpeedInsights />
                 </CountdownProvider>
             </body>
         </html>
