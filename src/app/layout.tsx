@@ -30,12 +30,6 @@ export async function generateMetadata(): Promise<Metadata> {
                     height: 600,
                     alt: 'Play Afrique OG',
                 },
-                {
-                    url: '/playafriquelogo.png',
-                    width: 800,
-                    height: 600,
-                    alt: 'Play Afrique Logo',
-                },
             ],
         },
     }
