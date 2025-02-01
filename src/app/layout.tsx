@@ -38,9 +38,9 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
                 />
             </head>
             <body className='font-sans'>
-                {/* <CountdownProvider targetDate={new Date('2025-02-01T13:30:00')}> */}
-                {children}
-                {/* </CountdownProvider> */}
+                <CountdownProvider targetDate={new Date('2025-02-01T13:30:00')}>
+                    {children}
+                </CountdownProvider>
             </body>
         </html>
     )
