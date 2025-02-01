@@ -86,12 +86,17 @@ function Footer() {
                         heart of African culture and global happenings.
                     </Text>
                     <Text className='text-gray-600 text-base'>
-                        Get in touch with us for any inquiries or to book an
-                        event.
+                        Get in touch with us at
+                        <a
+                            href='mailto:hello@playafrique.co.uk'
+                            className='underline decoration-dotted underline-offset-8 mx-1'>
+                            Play Afrique
+                        </a>
+                        for any inquiries or to book an event
                     </Text>
                     <div>{/* Contact Us form */}</div>
 
-                    <Text className='text-gray-600 text-base'>
+                    <Text className='hidden lg:block text-gray-600 text-base'>
                         &copy; {new Date().getFullYear()} Play Afrique. All
                         rights reserved.
                     </Text>
@@ -139,6 +144,12 @@ function Footer() {
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className='lg:hidden max-w-screen-2xl mx-auto flex justify-center items-center mt-10'>
+                <Text className='text-gray-600 text-base'>
+                    &copy; {new Date().getFullYear()} Play Afrique. All rights
+                    reserved.
+                </Text>
             </div>
         </section>
     )
