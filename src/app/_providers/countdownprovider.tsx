@@ -32,9 +32,7 @@ interface CountdownProviderProps {
     eventDescription?: string
 }
 
-const isProduction =
-    process.env.NODE_ENV === 'production' &&
-    process.env.VERCEL_PRODUCTION_URL === 'playafrique.co.uk'
+const isProduction = process.env.NODE_ENV === 'production'
 
 export const CountdownProvider: React.FC<CountdownProviderProps> = ({
     children,
@@ -42,6 +40,7 @@ export const CountdownProvider: React.FC<CountdownProviderProps> = ({
     eventDescription,
 }) => {
     const [timeLeft, setTimeLeft] = useState<number | null>(() => {
+        if (!isProduction) return null
         if (targetDate > new Date()) {
             return differenceInSeconds(targetDate, new Date())
         }
