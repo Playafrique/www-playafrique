@@ -50,7 +50,7 @@ export const CountdownProvider: React.FC<CountdownProviderProps> = ({
 
     useEffect(() => {
         // if time left is null and target date is in the past then return
-        if (timeLeft === null) return
+        if (timeLeft === null && targetDate < new Date()) return
 
         const updateCountdown = () => {
             const now = new Date()
@@ -71,7 +71,7 @@ export const CountdownProvider: React.FC<CountdownProviderProps> = ({
         const timer = setInterval(updateCountdown, 1000)
 
         return () => clearInterval(timer)
-    }, [targetDate])
+    }, [targetDate, timeLeft])
 
     const formatTime = (seconds: number) => {
         const days = Math.floor(seconds / (3600 * 24))
