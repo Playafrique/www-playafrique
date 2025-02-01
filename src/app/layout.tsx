@@ -62,11 +62,11 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
                 />
             </head>
             <body className='font-sans'>
-                <CountdownProvider targetDate={new Date('2025-02-01T17:45:00')}>
-                    {children}
-                    <Analytics />
-                    <SpeedInsights />
-                </CountdownProvider>
+                {/* <CountdownProvider targetDate={new Date('2025-02-01T17:45:00')}> */}
+                {children}
+                <Analytics />
+                <SpeedInsights />
+                {/* </CountdownProvider> */}
             </body>
         </html>
     )
