@@ -5,7 +5,7 @@ import '@fontsource-variable/montserrat'
 import type { Metadata } from 'next'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
-import { CountdownProvider } from './_providers/countdownprovider'
+// import { CountdownProvider } from './_providers/countdownprovider'
 
 export async function generateMetadata(): Promise<Metadata> {
     return {
