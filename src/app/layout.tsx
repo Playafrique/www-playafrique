@@ -23,16 +23,16 @@ export async function generateMetadata(): Promise<Metadata> {
             siteName: 'Play Afrique',
             images: [
                 {
+                    url: '/images/ogplayafrique.png',
+                    width: 800,
+                    height: 600,
+                    alt: 'Play Afrique OG',
+                },
+                {
                     url: '/playafriquelogo.png',
                     width: 800,
                     height: 600,
                     alt: 'Play Afrique Logo',
-                },
-                {
-                    url: '/images/heroimg.jpg',
-                    width: 800,
-                    height: 600,
-                    alt: 'Play Afrique Hero Image',
                 },
             ],
         },
