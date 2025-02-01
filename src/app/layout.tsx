@@ -7,6 +7,10 @@ import { CountdownProvider } from './_providers/countdownprovider'
 
 export async function generateMetadata(): Promise<Metadata> {
     return {
+        metadataBase: new URL('https://playafrique.co.uk'),
+        alternates: {
+            canonical: '/',
+        },
         title: 'Play Afrique',
         description:
             'From vibrant festivals to intimate gatherings, Play Afrique connects you to the heart of African culture and global happenings.',
@@ -15,7 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
             description:
                 'From vibrant festivals to intimate gatherings, Play Afrique connects you to the heart of African culture and global happenings.',
             type: 'website',
-            url: 'https://playafrique.co.uk',
+            url: '/',
             siteName: 'Play Afrique',
             images: [
                 {
