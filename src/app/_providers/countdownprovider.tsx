@@ -32,6 +32,10 @@ interface CountdownProviderProps {
     eventDescription?: string
 }
 
+const isProduction =
+    process.env.NODE_ENV === 'production' &&
+    process.env.VERCEL_PRODUCTION_URL === 'playafrique.co.uk'
+
 export const CountdownProvider: React.FC<CountdownProviderProps> = ({
     children,
     targetDate,
@@ -80,88 +84,92 @@ export const CountdownProvider: React.FC<CountdownProviderProps> = ({
     return (
         <CountdownContext.Provider value={{ targetDate, eventDescription }}>
             {children}
-            <AnimatePresence initial={false}>
-                {timeLeft !== null && (
-                    <div className='fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90'>
-                        <div className='bg-white rounded-lg p-8 max-w-2xl w-full text-center flex gap-3 flex-col item-center justify-center'>
-                            <div className='flex items-center justify-center'>
-                                <Image
-                                    width={500}
-                                    height={500}
-                                    src='/playafriquelogo.png'
-                                    alt='Play Afrique Logo'
-                                    className='w-28 h-28'
-                                />
-                            </div>
-                            {eventDescription ? (
-                                <Heading className='text-2xl font-semibold text-gray-600 mb-4'>
-                                    {eventDescription}
-                                </Heading>
-                            ) : (
-                                <div className='space-y-2 mb-5'>
-                                    <Heading className='text-2xl font-semibold text-gray-800'>
-                                        {'The Launch is Happening !!'}
-                                    </Heading>
-                                    <Text className='text-lg text-gray-600 max-w-md mx-auto'>
-                                        {
-                                            'Experience the Pulse of Africa: Discover Events That Inspire'
-                                        }
-                                    </Text>
-                                </div>
-                            )}
-                            {timeLeft > 0 ? (
-                                <div className='text-6xl font-bold mb-8'>
-                                    {formatTime(timeLeft).days > 0 && (
-                                        <span className='mr-4'>
-                                            {formatTime(timeLeft).days}d
-                                        </span>
+            {isProduction && timeLeft !== null && timeLeft > 0 && (
+                <>
+                    <AnimatePresence initial={false}>
+                        {timeLeft !== null && (
+                            <div className='fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90'>
+                                <div className='bg-white rounded-lg p-8 max-w-2xl w-full text-center flex gap-3 flex-col item-center justify-center'>
+                                    <div className='flex items-center justify-center'>
+                                        <Image
+                                            width={500}
+                                            height={500}
+                                            src='/playafriquelogo.png'
+                                            alt='Play Afrique Logo'
+                                            className='w-28 h-28'
+                                        />
+                                    </div>
+                                    {eventDescription ? (
+                                        <Heading className='text-2xl font-semibold text-gray-600 mb-4'>
+                                            {eventDescription}
+                                        </Heading>
+                                    ) : (
+                                        <div className='space-y-2 mb-5'>
+                                            <Heading className='text-2xl font-semibold text-gray-800'>
+                                                {'The Launch is Happening !!'}
+                                            </Heading>
+                                            <Text className='text-lg text-gray-600 max-w-md mx-auto'>
+                                                {
+                                                    'Experience the Pulse of Africa: Discover Events That Inspire'
+                                                }
+                                            </Text>
+                                        </div>
                                     )}
-                                    <span className='mr-4'>
-                                        {formatTime(timeLeft)
-                                            .hours.toString()
-                                            .padStart(2, '0')}
-                                        h
-                                    </span>
-                                    <span className='mr-4'>
-                                        {formatTime(timeLeft)
-                                            .minutes.toString()
-                                            .padStart(2, '0')}
-                                        m
-                                    </span>
-                                    <span>
-                                        {formatTime(timeLeft)
-                                            .seconds.toString()
-                                            .padStart(2, '0')}
-                                        s
-                                    </span>
+                                    {timeLeft > 0 ? (
+                                        <div className='text-5xl md:text-6xl font-bold mb-8'>
+                                            {formatTime(timeLeft).days > 0 && (
+                                                <span className='mr-4'>
+                                                    {formatTime(timeLeft).days}d
+                                                </span>
+                                            )}
+                                            <span className='mr-4'>
+                                                {formatTime(timeLeft)
+                                                    .hours.toString()
+                                                    .padStart(2, '0')}
+                                                h
+                                            </span>
+                                            <span className='mr-4'>
+                                                {formatTime(timeLeft)
+                                                    .minutes.toString()
+                                                    .padStart(2, '0')}
+                                                m
+                                            </span>
+                                            <span>
+                                                {formatTime(timeLeft)
+                                                    .seconds.toString()
+                                                    .padStart(2, '0')}
+                                                s
+                                            </span>
+                                        </div>
+                                    ) : (
+                                        <motion.div
+                                            initial={{ opacity: 0, scale: 0.5 }}
+                                            animate={{ opacity: 1, scale: 1 }}
+                                            className='text-4xl font-bold mb-8 text-green-600'>
+                                            {" It's time!"}
+                                        </motion.div>
+                                    )}
+                                    <p className='text-xl'>
+                                        {timeLeft > 0
+                                            ? `Countdown to ${format(
+                                                  targetDate,
+                                                  'MMMM do, yyyy HH:mm'
+                                              )}`
+                                            : 'Product launch is happening now!'}
+                                    </p>
                                 </div>
-                            ) : (
-                                <motion.div
-                                    initial={{ opacity: 0, scale: 0.5 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    className='text-4xl font-bold mb-8 text-green-600'>
-                                    {" It's time!"}
-                                </motion.div>
-                            )}
-                            <p className='text-xl'>
-                                {timeLeft > 0
-                                    ? `Countdown to ${format(
-                                          targetDate,
-                                          'MMMM do, yyyy HH:mm'
-                                      )}`
-                                    : 'Product launch is happening now!'}
-                            </p>
-                        </div>
-                    </div>
-                )}
-            </AnimatePresence>
-            {showConfetti && (
-                <ReactConfetti
-                    width={window.innerWidth}
-                    height={window.innerHeight}
-                    recycle={false}
-                    numberOfPieces={500}
-                />
+                            </div>
+                        )}
+                    </AnimatePresence>
+                    {showConfetti && (
+                        <ReactConfetti
+                            width={window.innerWidth}
+                            height={window.innerHeight}
+                            recycle={false}
+                            numberOfPieces={600}
+                        />
+                    )}
+                </>
             )}
         </CountdownContext.Provider>
     )

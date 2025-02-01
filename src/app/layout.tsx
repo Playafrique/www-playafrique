@@ -5,10 +5,34 @@ import '@fontsource-variable/montserrat'
 import type { Metadata } from 'next'
 import { CountdownProvider } from './_providers/countdownprovider'
 
-export const metadata: Metadata = {
-    title: 'Play Afrique',
-    description:
-        'From vibrant festivals to intimate gatherings, Play Afrique connects you to the heart of African culture and global happenings.',
+export async function generateMetadata(): Promise<Metadata> {
+    return {
+        title: 'Play Afrique',
+        description:
+            'From vibrant festivals to intimate gatherings, Play Afrique connects you to the heart of African culture and global happenings.',
+        openGraph: {
+            title: 'Play Afrique',
+            description:
+                'From vibrant festivals to intimate gatherings, Play Afrique connects you to the heart of African culture and global happenings.',
+            type: 'website',
+            url: 'https://playafrique.co.uk',
+            siteName: 'Play Afrique',
+            images: [
+                {
+                    url: '/playafriquelogo.png',
+                    width: 800,
+                    height: 600,
+                    alt: 'Play Afrique Logo',
+                },
+                {
+                    url: '/images/heroimg.jpg',
+                    width: 800,
+                    height: 600,
+                    alt: 'Play Afrique Hero Image',
+                },
+            ],
+        },
+    }
 }
 
 type RootLayoutProps = {
@@ -32,13 +56,13 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
 
                 <link
                     rel='icon'
-                    href='/favicon-32x32.png'
+                    href='/playafriquelogo.png'
                     type='image/png'
                     sizes='32x32'
                 />
             </head>
             <body className='font-sans'>
-                <CountdownProvider targetDate={new Date('2025-02-01T13:30:00')}>
+                <CountdownProvider targetDate={new Date('2025-02-01T17:00:00')}>
                     {children}
                 </CountdownProvider>
             </body>

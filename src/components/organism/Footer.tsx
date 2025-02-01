@@ -35,7 +35,7 @@ function Footer() {
             name: 'Facebook',
             icon: (
                 <Image
-                    src='/facebook.png'
+                    src='/icons/facebook.png'
                     alt='Play Afrique FB page'
                     width={100}
                     height={100}
@@ -49,7 +49,7 @@ function Footer() {
             name: 'Instagram',
             icon: (
                 <Image
-                    src='/instagram.png'
+                    src='/icons/instagram.png'
                     alt='Play Afrique Instagram page'
                     width={100}
                     height={100}
@@ -63,7 +63,7 @@ function Footer() {
             name: 'Tiktok',
             icon: (
                 <Image
-                    src='/tiktok.png'
+                    src='/icons/tiktok.png'
                     alt='Play Afrique Tiktok'
                     width={100}
                     height={100}
@@ -79,7 +79,9 @@ function Footer() {
             id='footer'
             className='min-h-96 bg-orange-50 space-y-8 py-20 px-10 2xl:px-0'>
             <div className='max-w-screen-2xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12'>
-                <div className='col-span-3 rounded-md h-96 space-y-8 max-w-xl'>
+                <div
+                    id='contact-us'
+                    className='col-span-3 rounded-md h-96 space-y-8 max-w-xl'>
                     <Logo isHome={false} />
                     <Text className='text-gray-600 text-base'>
                         Play Afrique is a platform that connects you to the
