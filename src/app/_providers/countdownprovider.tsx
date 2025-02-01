@@ -66,7 +66,7 @@ export const CountdownProvider: React.FC<CountdownProviderProps> = ({
         const timer = setInterval(updateCountdown, 1000)
 
         return () => clearInterval(timer)
-    }, [targetDate])
+    }, [targetDate, timeLeft])
 
     const formatTime = (seconds: number) => {
         const days = Math.floor(seconds / (3600 * 24))
@@ -100,11 +100,12 @@ export const CountdownProvider: React.FC<CountdownProviderProps> = ({
                             ) : (
                                 <div className='space-y-2 mb-5'>
                                     <Heading className='text-2xl font-semibold text-gray-800'>
-                                        The Launch is Happening !!
+                                        {'The Launch is Happening !!'}
                                     </Heading>
                                     <Text className='text-lg text-gray-600 max-w-md mx-auto'>
-                                        Experience the Pulse of Africa: Discover
-                                        Events That Inspire
+                                        {
+                                            'Experience the Pulse of Africa: Discover Events That Inspire'
+                                        }
                                     </Text>
                                 </div>
                             )}
@@ -139,7 +140,7 @@ export const CountdownProvider: React.FC<CountdownProviderProps> = ({
                                     initial={{ opacity: 0, scale: 0.5 }}
                                     animate={{ opacity: 1, scale: 1 }}
                                     className='text-4xl font-bold mb-8 text-green-600'>
-                                    It's time!
+                                    {" It's time!"}
                                 </motion.div>
                             )}
                             <p className='text-xl'>
