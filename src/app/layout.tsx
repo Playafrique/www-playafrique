@@ -56,10 +56,26 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
 
                 <link
                     rel='icon'
-                    href='/images/playafriquelogo.png'
                     type='image/png'
-                    sizes='32x32'
+                    href='/images/favicon-96x96.png'
+                    sizes='96x96'
                 />
+                <link
+                    rel='icon'
+                    type='image/svg+xml'
+                    href='/images/favicon.svg'
+                />
+                <link rel='shortcut icon' href='/images/favicon.ico' />
+                <link
+                    rel='apple-touch-icon'
+                    sizes='180x180'
+                    href='/images/apple-touch-icon.png'
+                />
+                <meta
+                    name='apple-mobile-web-app-title'
+                    content='Play Afrique'
+                />
+                <link rel='manifest' href='/images/site.webmanifest' />
             </head>
             <body className='font-sans'>
                 {/* <CountdownProvider targetDate={new Date('2025-02-01T17:45:00')}> */}
