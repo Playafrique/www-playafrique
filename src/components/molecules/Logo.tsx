@@ -15,7 +15,7 @@ function Logo({ isHome = false }: { isHome?: boolean }) {
                     Play Afrique
                 </Heading>
                 <Image
-                    src='/playafriquelogo.png'
+                    src='/images/playafriquelogo.png'
                     alt='Play Afrique Logo'
                     width={500}
                     height={500}

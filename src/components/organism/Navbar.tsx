@@ -117,7 +117,7 @@ function MobileNav({ isHome }: { isHome?: boolean }) {
                         width={100}
                         height={100}
                         alt='Play Afrique Logo'
-                        src='/playafriquelogo.png'
+                        src='/images/playafriquelogo.png'
                         className='w-20 h-20'
                     />
                     <SheetTitle className='sr-only'>
