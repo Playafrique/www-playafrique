@@ -17,42 +17,54 @@ function EventCard({ event, variant = 'default' }: EventCardProps) {
     return (
         <div
             className={cn(
-                'h-auto rounded-xl overflow-hidden relative shadow-sm',
+                'h-auto flex flex-col justify-between rounded-xl overflow-hidden relative shadow-sm',
                 {
                     'bg-white text-black': variant === 'default',
                     'bg-black text-white': variant === 'dark',
                 }
             )}>
-            <Image
-                src={event.images.thumbnail}
-                alt={event.name}
-                width={1000}
-                height={600}
-                className='w-full h-72 object-cover object-left'
-            />
-            <div className='w-full bg-[url("/images/pattern.png")] bg-repeat bg-contain bg-center h-3' />
-            <div className=' flex flex-col items-start justify-end p-4 pb-8'>
-                <div className='flex flex-col items-start justify-between gap-2 relative w-full'>
+            <div>
+                <Image
+                    width={1000}
+                    height={1000}
+                    alt={event.name}
+                    src={event.images.thumbnail}
+                    className='w-full h-60 object-cover object-left'
+                />
+                <div className='w-full bg-[url("/images/pattern.png")] bg-repeat bg-contain bg-center h-4' />
+                <div className='p-2 px-4 space-y-2'>
                     <Heading
                         as='h3'
-                        className='font-semibold text-xl capitalize text-current'>
+                        className='font-bold text-xl capitalize text-current'>
                         {event.name}
                     </Heading>
-                    <div className=' space-y-2'>
+                </div>
+            </div>
+            <div className='flex flex-col items-start justify-end px-4 pb-4'>
+                <div className='flex items-center justify-between gap-3 w-full '>
+                    <div className='space-y-2'>
                         <div className='flex items-center gap-2'>
-                            <Calendar className='w-4 h-4' />
-                            <p className='text-sm'>
+                            <Calendar className='w-5 h-5' />
+                            <span className='text-sm'>
                                 {format(
                                     event.next_occurrence_date.date,
-                                    'dd MMM yyyy HH:mm a'
+                                    'dd MMM yyyy'
                                 )}
-                            </p>
+                            </span>
+                            <span>@</span>
+                            <span className='text-sm'>
+                                {format(
+                                    event.next_occurrence_date.date,
+                                    'HH:mm a'
+                                )}
+                            </span>
                         </div>
                         <div className='flex items-center gap-2'>
-                            <MapPin className='w-4 h-4' />
+                            <MapPin className='w-5 h-5' />
                             <p className='text-sm'>{event.venue.name}</p>
                         </div>
                     </div>
+
                     {event?.status === 'published' ? (
                         <Button
                             asChild
@@ -60,7 +72,7 @@ function EventCard({ event, variant = 'default' }: EventCardProps) {
                             title={`View ${event.name}`}
                             variant='outline'
                             className={cn(
-                                'bg-transparent text-gray-600 border-gray-600 absolute rounded-full right-0 bottom-0 w-12 h-12 hover:bg-black hover:text-white transition-all ease-in-out duration-200',
+                                'bg-transparent text-gray-600 border-gray-600  rounded-full w-12 h-12 hover:bg-black hover:text-white transition-all ease-in-out duration-200',
                                 {
                                     'text-gray-300 border-gray-300 hover:bg-white hover:text-black':
                                         variant === 'dark',
