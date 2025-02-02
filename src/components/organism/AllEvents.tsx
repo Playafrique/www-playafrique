@@ -29,7 +29,7 @@ async function AllEvents() {
                 <HeadingTitle
                     title='Explore Events'
                     backTitle='Explore Events'
-                    text='Discover all the events that are happening around the world.'
+                    text='Explore events that inspire and connect you to the heart of African culture.'
                 />
                 <div
                     className={cn(
