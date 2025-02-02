@@ -23,7 +23,9 @@ async function UpcomingList() {
         res?.data.filter((evt) => evt.status === 'draft') ?? []
 
     return (
-        <section className='space-y-4 h-auto min-h-96 py-28 max-w-screen-2xl mx-auto px-6 3xl:px-0'>
+        <section
+            id='upcoming-events'
+            className='space-y-4 h-auto min-h-96 py-28 max-w-screen-2xl mx-auto px-6 3xl:px-0'>
             <HeadingTitle
                 backTitle='Upcoming Events'
                 title='Upcoming Events'
