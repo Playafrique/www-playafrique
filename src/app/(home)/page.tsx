@@ -3,6 +3,7 @@ import Text from '@/components/atoms/Text'
 import ErrorHandlerWrapper from '@/components/molecules/ErrorHandlerWrapper'
 import Aboutus from '@/components/organism/Aboutus'
 import AllEvents from '@/components/organism/AllEvents'
+import Services from '@/components/organism/Services'
 import UpcomingList from '@/components/organism/UpcomingList'
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
@@ -50,6 +51,7 @@ async function Home() {
                     <AllEvents />
                 </ErrorHandlerWrapper>
             </Suspense>
+            <Services />
             <Aboutus />
             <Suspense fallback={<div>Loading...</div>}>
                 <ErrorHandlerWrapper>

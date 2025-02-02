@@ -20,6 +20,14 @@ function Footer() {
             name: 'Events',
             href: '/#events',
         },
+        {
+            name: 'Upcoming Events',
+            href: '/#upcoming-events',
+        },
+        {
+            name: 'Services',
+            href: '/#services',
+        },
         // {
         //     name: 'Rentals',
         //     href: '/#',

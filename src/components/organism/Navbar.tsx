@@ -26,16 +26,20 @@ const navlinks = [
         href: '/',
     },
     {
-        name: 'Upcoming Events',
-        href: '/#upcoming-events',
-    },
-    {
         name: 'Events',
         href: '/#events',
     },
     {
+        name: 'Services',
+        href: '/#services',
+    },
+    {
         name: 'About Us',
         href: '/#aboutus',
+    },
+    {
+        name: 'Upcoming Events',
+        href: '/#upcoming-events',
     },
     // {
     //     name: 'Rentals',
