@@ -56,7 +56,7 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
 
                 <link
                     rel='icon'
-                    href='/playafriquelogo.png'
+                    href='/images/playafriquelogo.png'
                     type='image/png'
                     sizes='32x32'
                 />
