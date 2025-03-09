@@ -6,6 +6,7 @@ import { EVENT } from '@/lib/types'
 import EventCard from './EventCard'
 import NoResultsFallback from '../molecules/NoResultsFallback'
 import { cn } from '@/lib/utils'
+import Animate from '../atoms/Animate'
 
 export const revalidate = 60 // revalidate every 60 seconds
 
@@ -26,11 +27,13 @@ async function UpcomingList() {
         <section
             id='upcoming-events'
             className='space-y-4 h-auto min-h-96 py-28 max-w-screen-2xl mx-auto px-6 3xl:px-0'>
-            <HeadingTitle
-                backTitle='Upcoming Events'
-                title='Upcoming Events'
-                text='Find some of our upcoming events below.'
-            />
+            <Animate dir='up' duration={0.3}>
+                <HeadingTitle
+                    backTitle='Upcoming Events'
+                    title='Upcoming Events'
+                    text='Find some of our upcoming events below.'
+                />
+            </Animate>
             <div
                 className={cn(
                     'col-span-3 grid md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6 h-full gap-y-4',
@@ -42,13 +45,19 @@ async function UpcomingList() {
                 <ListWrapper
                     list={upcomingEvents}
                     renderFallback={() => (
-                        <NoResultsFallback
-                            title='No upcoming results'
-                            text='Event results not currently available'
-                        />
+                        <Animate dir='up' duration={0.5}>
+                            <NoResultsFallback
+                                title='No upcoming results'
+                                text='Event results not currently available'
+                            />
+                        </Animate>
                     )}
                     keyExtractor={(evt) => evt?.id}>
-                    {(event) => <EventCard variant='dark' event={event} />}
+                    {(event) => (
+                        <Animate dir='up' duration={0.5}>
+                            <EventCard variant='dark' event={event} />
+                        </Animate>
+                    )}
                 </ListWrapper>
             </div>
         </section>

@@ -46,17 +46,21 @@ function EventCard({ event, variant = 'default' }: EventCardProps) {
                         <div className='flex items-center gap-2'>
                             <Calendar className='w-5 h-5' />
                             <span className='text-sm'>
-                                {format(
-                                    event.next_occurrence_date.date,
-                                    'dd MMM yyyy'
-                                )}
+                                {event?.next_occurrence_date
+                                    ? format(
+                                          event.next_occurrence_date.date,
+                                          'dd MMM yyyy'
+                                      )
+                                    : 'TBA'}
                             </span>
                             <span>@</span>
                             <span className='text-sm'>
-                                {format(
-                                    event.next_occurrence_date.date,
-                                    'HH:mm a'
-                                )}
+                                {event?.next_occurrence_date
+                                    ? format(
+                                          event.next_occurrence_date?.date,
+                                          'HH:mm a'
+                                      )
+                                    : 'TBA'}
                             </span>
                         </div>
                         <div className='flex items-center gap-2'>

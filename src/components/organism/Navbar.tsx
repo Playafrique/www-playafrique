@@ -19,6 +19,7 @@ import {
 } from '../ui/sheet'
 import Hamburger from 'hamburger-react'
 import { useDisclosure } from '@/hooks/useDisclosure'
+import Animate from '../atoms/Animate'
 
 const navlinks = [
     {

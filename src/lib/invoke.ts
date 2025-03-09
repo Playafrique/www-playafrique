@@ -3,6 +3,10 @@ import axios, { AxiosError, Method, AxiosRequestHeaders } from 'axios'
 
 // BASE_URLS
 const BASE_URLS = {
+    home: {
+        url: '/api',
+        headers: { Accept: 'application/json' },
+    },
     events: {
         url: 'https://api.tickettailor.com/v1',
         headers: {
