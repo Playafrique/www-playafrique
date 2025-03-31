@@ -13,6 +13,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Suspense } from 'react'
 
+export const revalidate = 600 // 10 minutes
+
 async function Home() {
     return (
         <main className='min-h-screen bg-gray-50'>

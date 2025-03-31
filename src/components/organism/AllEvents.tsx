@@ -12,9 +12,6 @@ async function AllEvents() {
     const { res, error } = await invoke<{ data: EVENT[] }>({
         baseUrl: 'events',
         endpoint: '/event_series',
-        options: {
-            headers: { 'Cache-Control': 'max-age=60' }, // revalidate every
-        },
     })
 
     if (error) {
@@ -42,7 +39,7 @@ async function AllEvents() {
                         {
                             'md:grid-cols-1 lg:grid-cols-1 2xl:grid-cols-1':
                                 allEvents.length === 0,
-                        }
+                        },
                     )}>
                     <ListWrapper
                         list={allEvents}
