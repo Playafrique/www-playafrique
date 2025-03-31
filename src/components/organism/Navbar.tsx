@@ -19,7 +19,16 @@ import {
 } from '../ui/sheet'
 import Hamburger from 'hamburger-react'
 import { useDisclosure } from '@/hooks/useDisclosure'
-import Animate from '../atoms/Animate'
+// import {
+//     NavigationMenu,
+//     NavigationMenuContent,
+//     NavigationMenuIndicator,
+//     NavigationMenuItem,
+//     NavigationMenuLink,
+//     NavigationMenuList,
+//     NavigationMenuTrigger,
+//     NavigationMenuViewport,
+// } from '@/components/ui/navigation-menu'
 
 const navlinks = [
     {
@@ -33,6 +42,13 @@ const navlinks = [
     {
         name: 'Services',
         href: '/#services',
+        sublinks: [
+            { name: 'African Themed Events & Festivals', href: '/#services' },
+            { name: 'Event Catering', href: '/#services' },
+            { name: 'Cultural Props Rentals', href: '/#services' },
+            { name: 'Popup Markets', href: '/#services' },
+            { name: 'Diversity Workshops', href: '/#services' },
+        ],
     },
     {
         name: 'About Us',
@@ -59,7 +75,7 @@ function Navbar() {
         <nav
             className={cn(
                 'h-20  w-full absolute z-30 bg-transparent top-0 left-0',
-                { 'bg-white shadow-sm border-b border-gray-200': !isHome }
+                { 'bg-white shadow-sm border-b border-gray-200': !isHome },
             )}>
             <div className='container mx-auto h-full flex justify-between items-center px-6 2xl:px-0'>
                 <Logo isHome={isHome} />

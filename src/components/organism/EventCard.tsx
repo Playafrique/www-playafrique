@@ -21,14 +21,14 @@ function EventCard({ event, variant = 'default' }: EventCardProps) {
                 {
                     'bg-white text-black': variant === 'default',
                     'bg-black text-white': variant === 'dark',
-                }
+                },
             )}>
             <div>
                 <Image
                     width={1000}
                     height={1000}
                     alt={event.name}
-                    src={event.images.thumbnail}
+                    src={event.images.thumbnail ?? '/images/fallbackimg.png'}
                     className='w-full h-60 object-cover object-left'
                 />
                 <div className='w-full bg-[url("/images/pattern.png")] bg-repeat bg-contain bg-center h-4' />
@@ -49,7 +49,7 @@ function EventCard({ event, variant = 'default' }: EventCardProps) {
                                 {event?.next_occurrence_date
                                     ? format(
                                           event.next_occurrence_date.date,
-                                          'dd MMM yyyy'
+                                          'dd MMM yyyy',
                                       )
                                     : 'TBA'}
                             </span>
@@ -58,7 +58,7 @@ function EventCard({ event, variant = 'default' }: EventCardProps) {
                                 {event?.next_occurrence_date
                                     ? format(
                                           event.next_occurrence_date?.date,
-                                          'HH:mm a'
+                                          'HH:mm a',
                                       )
                                     : 'TBA'}
                             </span>
@@ -80,7 +80,7 @@ function EventCard({ event, variant = 'default' }: EventCardProps) {
                                 {
                                     'text-gray-300 border-gray-300 hover:bg-white hover:text-black':
                                         variant === 'dark',
-                                }
+                                },
                             )}>
                             <Link href={event.url}>
                                 <MoveUpRight className='w-4 h-4' />
