@@ -17,6 +17,7 @@ const BASE_URLS = {
     tickets: {
         url: 'https://api.tickettailor.com/v1/tickets',
         headers: {
+            Accept: 'application/json',
             Authorization: `Basic ${env.TICKET_TAILOR_API_KEY}`,
         },
     },
@@ -79,6 +80,7 @@ export async function invoke<T>({
     }
 
     const { headers: optionHeaders, ...opts } = options || {}
+
     try {
         const { data: res, status } = await axios({
             data,

@@ -5,11 +5,11 @@ import { Calendar, MapPin, MoveUpRight } from 'lucide-react'
 import { format } from 'date-fns'
 import { Button } from '../ui/button'
 import Link from 'next/link'
-import { EVENT } from '@/lib/types'
+import { EVENT_TYPE } from '@/lib/types'
 import { cn } from '@/lib/utils'
 
 type EventCardProps = {
-    event: EVENT
+    event: EVENT_TYPE
     variant?: 'default' | 'dark'
 }
 
@@ -21,7 +21,7 @@ function EventCard({ event, variant = 'default' }: EventCardProps) {
                 {
                     'bg-white text-black': variant === 'default',
                     'bg-black text-white': variant === 'dark',
-                },
+                }
             )}>
             <div>
                 <Image
@@ -46,22 +46,12 @@ function EventCard({ event, variant = 'default' }: EventCardProps) {
                         <div className='flex items-center gap-2'>
                             <Calendar className='w-5 h-5' />
                             <span className='text-sm'>
-                                {event?.next_occurrence_date
-                                    ? format(
-                                          event.next_occurrence_date.date,
-                                          'dd MMM yyyy',
-                                      )
+                                {event?.start?.date
+                                    ? format(event?.start.date, 'dd MMM yyyy')
                                     : 'TBA'}
                             </span>
                             <span>@</span>
-                            <span className='text-sm'>
-                                {event?.next_occurrence_date
-                                    ? format(
-                                          event.next_occurrence_date?.date,
-                                          'HH:mm a',
-                                      )
-                                    : 'TBA'}
-                            </span>
+                            <span className='text-sm'>{event?.end?.time}</span>
                         </div>
                         <div className='flex items-center gap-2'>
                             <MapPin className='w-5 h-5' />
@@ -80,9 +70,9 @@ function EventCard({ event, variant = 'default' }: EventCardProps) {
                                 {
                                     'text-gray-300 border-gray-300 hover:bg-white hover:text-black':
                                         variant === 'dark',
-                                },
+                                }
                             )}>
-                            <Link href={event.url}>
+                            <Link href={`/event/${event?.id}`} passHref>
                                 <MoveUpRight className='w-4 h-4' />
                             </Link>
                         </Button>

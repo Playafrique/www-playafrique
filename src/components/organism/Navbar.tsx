@@ -19,6 +19,11 @@ import {
 } from '../ui/sheet'
 import Hamburger from 'hamburger-react'
 import { useDisclosure } from '@/hooks/useDisclosure'
+import {
+    NavigationMenu,
+    NavigationMenuItem,
+    NavigationMenuList,
+} from '../ui/navigation-menu'
 // import {
 //     NavigationMenu,
 //     NavigationMenuContent,
@@ -43,11 +48,20 @@ const navlinks = [
         name: 'Services',
         href: '/#services',
         sublinks: [
-            { name: 'African Themed Events & Festivals', href: '/#services' },
-            { name: 'Event Catering', href: '/#services' },
-            { name: 'Cultural Props Rentals', href: '/#services' },
-            { name: 'Popup Markets', href: '/#services' },
-            { name: 'Diversity Workshops', href: '/#services' },
+            {
+                name: 'African Themed Events & Festivals',
+                href: '/services/african-themed-events-festivals',
+            },
+            { name: 'Event Catering', href: '/services/event-catering' },
+            {
+                name: 'Cultural Props Rentals',
+                href: '/services/cultural-props-rentals',
+            },
+            { name: 'Popup Markets', href: '/services/popup-markets' },
+            {
+                name: 'Diversity Workshops',
+                href: '/services/diversity-workshops',
+            },
         ],
     },
     {
@@ -75,19 +89,23 @@ function Navbar() {
         <nav
             className={cn(
                 'h-20  w-full absolute z-30 bg-transparent top-0 left-0',
-                { 'bg-white shadow-sm border-b border-gray-200': !isHome },
+                { 'bg-white shadow-sm border-b border-gray-200': !isHome }
             )}>
             <div className='container mx-auto h-full flex justify-between items-center px-6 2xl:px-0'>
                 <Logo isHome={isHome} />
-                <div className='hidden lg:flex space-x-4 items-center'>
-                    <div
+                <NavigationMenu className='hidden lg:flex space-x-4 items-center'>
+                    <NavigationMenuList
                         className={cn('flex space-x-3 items-center', {
                             'text-white': isHome,
                         })}>
                         <ListWrapper
                             list={navlinks}
                             keyExtractor={(nav) => nav.name}>
-                            {(nav) => <Navlink nav={nav} />}
+                            {(nav) => (
+                                <NavigationMenuItem>
+                                    <Navlink nav={nav} />
+                                </NavigationMenuItem>
+                            )}
                         </ListWrapper>
                         <Button
                             asChild
@@ -95,8 +113,8 @@ function Navbar() {
                             className={isHome ? 'bg-transparent' : ''}>
                             <Link href='/#contact-us'>Contact Us</Link>
                         </Button>
-                    </div>
-                </div>
+                    </NavigationMenuList>
+                </NavigationMenu>
                 <MobileNav isHome={isHome} />
             </div>
         </nav>
@@ -149,18 +167,24 @@ function MobileNav({ isHome }: { isHome?: boolean }) {
                         direction='right'
                     />
                 </SheetHeader>
-                <div className='space-y-10 py-20'>
-                    <div className='flex flex-col gap-5'>
-                        <ListWrapper
-                            list={navlinks}
-                            keyExtractor={(nav) => nav.name}>
-                            {(nav) => <Navlink nav={nav} cb={onClose} />}
-                        </ListWrapper>
+                <NavigationMenu>
+                    <div className='space-y-10 py-20'>
+                        <NavigationMenuList className='flex flex-col gap-5'>
+                            <ListWrapper
+                                list={navlinks}
+                                keyExtractor={(nav) => nav.name}>
+                                {(nav) => (
+                                    <NavigationMenuItem>
+                                        <Navlink nav={nav} cb={onClose} />
+                                    </NavigationMenuItem>
+                                )}
+                            </ListWrapper>
+                        </NavigationMenuList>
+                        <Button onClick={onClose} asChild className='w-full'>
+                            <Link href='/#contact-us'>Contact Us</Link>
+                        </Button>
                     </div>
-                    <Button onClick={onClose} asChild>
-                        <Link href='/#contact-us'>Contact Us</Link>
-                    </Button>
-                </div>
+                </NavigationMenu>
             </SheetContent>
         </Sheet>
     )

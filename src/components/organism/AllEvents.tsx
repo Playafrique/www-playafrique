@@ -2,16 +2,16 @@ import React from 'react'
 import ListWrapper from '../atoms/ListWrapper'
 import EventCard from './EventCard'
 import { invoke } from '@/lib/invoke'
-import { EVENT } from '@/lib/types'
+import { EVENT, EVENT_TYPE } from '@/lib/types'
 import HeadingTitle from '../molecules/HeadingTitle'
 import NoResultsFallback from '../molecules/NoResultsFallback'
 import { cn } from '@/lib/utils'
 import Animate from '../atoms/Animate'
 
 async function AllEvents() {
-    const { res, error } = await invoke<{ data: EVENT[] }>({
+    const { res, error } = await invoke<{ data: EVENT_TYPE[] }>({
         baseUrl: 'events',
-        endpoint: '/event_series',
+        endpoint: '/events',
     })
 
     if (error) {
@@ -38,11 +38,11 @@ async function AllEvents() {
                         'col-span-3 grid md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6 h-full gap-y-4',
                         {
                             'md:grid-cols-1 lg:grid-cols-1 2xl:grid-cols-1':
-                                allEvents.length === 0,
-                        },
+                                allEvents?.length === 0,
+                        }
                     )}>
                     <ListWrapper
-                        list={allEvents}
+                        list={allEvents ?? []}
                         renderFallback={() => (
                             <NoResultsFallback
                                 title='No Events found'

@@ -27,8 +27,31 @@ import Heading from '../atoms/Heading'
 import { contactFormSchema, contactFormType } from '@/lib/validationschema'
 import { Alert, AlertDescription, AlertTitle } from '../ui/alert'
 import Animate from '../atoms/Animate'
+import ListWrapper from '../atoms/ListWrapper'
 
-export default function ContactForm() {
+const interests = [
+    { label: 'Support Enquiry', value: 'support-enquiry' },
+    {
+        label: 'African Themed Events & Festivals',
+        value: 'african-themed-events-festivals',
+    },
+    { label: 'Event Catering', value: 'event-catering' },
+    { label: 'Cultural Props & Rentals', value: 'cultural-props-rentals' },
+    { label: 'Popup Markets', value: 'popup-markets' },
+    { label: 'Diversity Workshops', value: 'diversity-workshops' },
+]
+
+type Props = {
+    defaultValues?: {
+        name?: string
+        email?: string
+        interest?: string
+        message?: string
+    }
+    hideTitle?: boolean
+}
+
+export default function ContactForm({ defaultValues = {}, hideTitle }: Props) {
     const [isPending, startTransition] = useTransition()
     const [isSuccess, setIsSuccess] = useState(false)
     const [error, setError] = useState('')
@@ -41,6 +64,7 @@ export default function ContactForm() {
             email: '',
             interest: '',
             message: '',
+            ...defaultValues,
         },
     })
 
@@ -73,19 +97,21 @@ export default function ContactForm() {
     })
 
     return (
-        <div className='w-full mx-auto'>
-            <div className='mb-10'>
-                <Heading
-                    as='h2'
-                    className='text-2xl lg:text-5xl font-bold text-gray-900 mb-2'>
-                    We&apos;d love to hear from you,
-                </Heading>
-                <Heading
-                    as='h2'
-                    className='text-2xl lg:text-5xl font-bold text-gray-900 flex items-center'>
-                    Get in touch <span className='ml-2'>👋</span>
-                </Heading>
-            </div>
+        <div id='contact-form' className='w-full mx-auto'>
+            {hideTitle ? null : (
+                <div className='mb-10'>
+                    <Heading
+                        as='h2'
+                        className='text-2xl lg:text-5xl font-bold text-gray-900 mb-2'>
+                        We&apos;d love to hear from you,
+                    </Heading>
+                    <Heading
+                        as='h2'
+                        className='text-2xl lg:text-5xl font-bold text-gray-900 flex items-center'>
+                        Get in touch <span className='ml-2'>👋</span>
+                    </Heading>
+                </div>
+            )}
             {isSuccess && (
                 <Animate
                     dir='down'
@@ -94,7 +120,6 @@ export default function ContactForm() {
                     useExistAnimation={true}>
                     <Alert variant='default'>
                         <CheckCircle className='size-5 text-white' />
-
                         <AlertTitle className=' font-medium'>
                             Your message has been sent!
                         </AlertTitle>
@@ -183,24 +208,17 @@ export default function ContactForm() {
                                         </SelectTrigger>
                                     </FormControl>
                                     <SelectContent>
-                                        <SelectItem value='user-support'>
-                                            User Support
-                                        </SelectItem>
-                                        <SelectItem value='themed-events'>
-                                            African Themed Events & Festivals
-                                        </SelectItem>
-                                        <SelectItem value='event-catering'>
-                                            Event Catering
-                                        </SelectItem>
-                                        <SelectItem value='cultural-props'>
-                                            Cultural Props & Rentals
-                                        </SelectItem>
-                                        <SelectItem value='popup-markets'>
-                                            Pop-up Markets
-                                        </SelectItem>
-                                        <SelectItem value='diversity-workshops'>
-                                            Diversity Workshops
-                                        </SelectItem>
+                                        <ListWrapper
+                                            list={interests}
+                                            keyExtractor={(item) =>
+                                                `${item.label}-${item?.value}`
+                                            }>
+                                            {(item) => (
+                                                <SelectItem value={item?.value}>
+                                                    {item?.label}
+                                                </SelectItem>
+                                            )}
+                                        </ListWrapper>
                                     </SelectContent>
                                 </Select>
                                 <FormMessage />

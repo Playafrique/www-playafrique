@@ -87,7 +87,7 @@ function Footer() {
             id='footer'
             className='min-h-96 bg-orange-50 space-y-8 py-20 px-10 3xl:px-0'>
             <div className='max-w-screen-2xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12'>
-                <div className='col-span-3 rounded-md h-96 space-y-8 max-w-xl'>
+                <div className='col-span-3 rounded-md md:h-96 space-y-8 max-w-xl'>
                     <Logo isHome={false} />
                     <Text className='text-gray-600 text-base'>
                         Play Afrique is a platform that connects you to the
@@ -109,7 +109,7 @@ function Footer() {
                         rights reserved.
                     </Text>
                 </div>
-                <div className='col-span-2 rounded-md h-96 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6'>
+                <div className='col-span-2 rounded-md md:h-96 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6'>
                     <div className='w-full rounded-md h-full space-y-5'>
                         <Heading
                             as='h4'

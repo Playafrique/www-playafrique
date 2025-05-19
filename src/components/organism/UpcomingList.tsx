@@ -2,7 +2,7 @@ import React from 'react'
 import HeadingTitle from '../molecules/HeadingTitle'
 import ListWrapper from '../atoms/ListWrapper'
 import { invoke } from '@/lib/invoke'
-import { EVENT } from '@/lib/types'
+import { EVENT_TYPE } from '@/lib/types'
 import EventCard from './EventCard'
 import NoResultsFallback from '../molecules/NoResultsFallback'
 import { cn } from '@/lib/utils'
@@ -11,9 +11,9 @@ import Animate from '../atoms/Animate'
 export const revalidate = 60 // revalidate every 60 seconds
 
 async function UpcomingList() {
-    const { res, error } = await invoke<{ data: EVENT[] }>({
+    const { res, error } = await invoke<{ data: EVENT_TYPE[] }>({
         baseUrl: 'events',
-        endpoint: '/event_series?limit=4',
+        endpoint: '/events?limit=4',
     })
 
     if (error) {
