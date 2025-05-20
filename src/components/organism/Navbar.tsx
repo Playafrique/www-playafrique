@@ -167,8 +167,8 @@ function MobileNav({ isHome }: { isHome?: boolean }) {
                         direction='right'
                     />
                 </SheetHeader>
-                <NavigationMenu>
-                    <div className='space-y-10 py-20'>
+                <div className='space-y-10 w-full overflow-y-auto'>
+                    <NavigationMenu className='max-w-full'>
                         <NavigationMenuList className='flex flex-col gap-5'>
                             <ListWrapper
                                 list={navlinks}
@@ -180,11 +180,11 @@ function MobileNav({ isHome }: { isHome?: boolean }) {
                                 )}
                             </ListWrapper>
                         </NavigationMenuList>
-                        <Button onClick={onClose} asChild className='w-full'>
-                            <Link href='/#contact-us'>Contact Us</Link>
-                        </Button>
-                    </div>
-                </NavigationMenu>
+                    </NavigationMenu>
+                    <Button onClick={onClose} asChild className='w-full'>
+                        <Link href='/#contact-us'>Contact Us</Link>
+                    </Button>
+                </div>
             </SheetContent>
         </Sheet>
     )

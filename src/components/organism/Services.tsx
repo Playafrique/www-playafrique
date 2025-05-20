@@ -16,7 +16,7 @@ function Services() {
     return (
         <section
             id='services'
-            className='min-h-[65vh] max-w-screen-2xl mx-auto space-y-5 my-28 px-6 3xl:px-0 pb-20'>
+            className='min-h-[65vh] max-w-screen-2xl mx-auto space-y-5 my-28 px-6 3xl:px-0 md:pb-20'>
             <Animate dir='up' duration={0.3}>
                 <HeadingTitle
                     title='Services offered'

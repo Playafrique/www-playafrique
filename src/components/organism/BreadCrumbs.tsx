@@ -14,6 +14,7 @@ import { getBreadcrumbs, PATH } from '@/lib/breadcrumbs'
 import { cn } from '@/lib/utils'
 
 import ListWrapper from '@components/atoms/ListWrapper'
+import { usePathname } from 'next/navigation'
 
 const colorVariant = cva('', {
     variants: {
@@ -34,25 +35,21 @@ type BreadCrumbsProps = {
 
 function BreadCrumbs({ color = 'default' }: BreadCrumbsProps) {
     const [paths, setPaths] = useState<PATH[]>([])
+    const pathname = usePathname()
 
     useEffect(() => {
-        if (typeof window === 'undefined') return
-        const path = window.location.pathname
-        const breadcrumbs = getBreadcrumbs(path)
+        const breadcrumbs = getBreadcrumbs(pathname)
         setPaths(breadcrumbs)
-    }, [])
+    }, [pathname])
+
     return (
         <Breadcrumb>
             <BreadcrumbList className={cn(colorVariant({ color }))}>
                 <BreadcrumbItem>
                     <BreadcrumbLink
                         href='/'
-                        data-active={
-                            typeof window !== 'undefined'
-                                ? window?.location.pathname === '/'
-                                : false
-                        }
-                        className='data-[active=false]:text-current font-sans'>
+                        data-active={pathname === '/'}
+                        className='data-[active=false]:text-current font-sans text-base font-medium'>
                         Home
                     </BreadcrumbLink>
                 </BreadcrumbItem>
@@ -67,7 +64,7 @@ function BreadCrumbs({ color = 'default' }: BreadCrumbsProps) {
                                     href={path.href}
                                     aria-disabled={path.active}
                                     data-active={path.active}
-                                    className='data-[active=false]:text-current capitalize aria-disabled:pointer-events-none aria-disabled:text-current aria-disabled:opacity-50 font-sans'>
+                                    className='data-[active=false]:text-current data-[active=false]:font-medium text-base capitalize aria-disabled:pointer-events-none aria-disabled:text-current aria-disabled:opacity-50 font-sans'>
                                     {path.name}
                                 </BreadcrumbLink>
                             </BreadcrumbItem>

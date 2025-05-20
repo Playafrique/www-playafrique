@@ -57,7 +57,7 @@ function Navlink({ nav, cb }: NavlinkProps) {
                                     onClick={cb}
                                     variant='ghost'
                                     data-active={isActive}
-                                    className='relative text-sm font-normal leading-6 aria-disabled:opacity-50 aria-disabled:pointer-events-none w-fit data-[active=true]:underline underline-offset-8 decoration-dotted hover:bg-transparent hover:text-current'>
+                                    className='relative text-base font-normal leading-6 aria-disabled:opacity-50 aria-disabled:pointer-events-none w-fit data-[active=true]:underline underline-offset-8 decoration-dotted hover:bg-transparent hover:text-current'>
                                     <Link passHref href={nv.href}>
                                         {nv.name}
                                     </Link>
@@ -69,7 +69,7 @@ function Navlink({ nav, cb }: NavlinkProps) {
                 </div>
                 <NavigationMenuTrigger
                     data-active={isActive}
-                    className='hidden md:flex bg-transparent relative text-sm font-normal leading-6 aria-disabled:opacity-50 aria-disabled:pointer-events-none w-fit data-[active=true]:border-b border-dotted hover:bg-transparent hover:text-current'>
+                    className='hidden md:flex bg-transparent relative text-base font-normal leading-6 aria-disabled:opacity-50 aria-disabled:pointer-events-none w-fit data-[active=true]:border-b border-dotted hover:bg-transparent hover:text-current'>
                     {nav.name}
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className='w-[200px] p-4 hidden md:block'>
@@ -81,7 +81,7 @@ function Navlink({ nav, cb }: NavlinkProps) {
                                 asChild
                                 variant='ghost'
                                 data-active={isActive}
-                                className='w-full text-left text-sm font-normal leading-6 aria-disabled:opacity-50 aria-disabled:pointer-events-none data-[active=true]:underline underline-offset-8 decoration-dotted hover:bg-transparent hover:text-current'>
+                                className='w-full text-left text-base font-normal leading-6 aria-disabled:opacity-50 aria-disabled:pointer-events-none data-[active=true]:underline underline-offset-8 decoration-dotted hover:bg-transparent hover:text-current'>
                                 <Link
                                     passHref
                                     onClick={cb}
@@ -106,7 +106,7 @@ function Navlink({ nav, cb }: NavlinkProps) {
             onClick={cb}
             variant='ghost'
             data-active={isActive}
-            className='relative text-sm font-normal leading-6 aria-disabled:opacity-50 aria-disabled:pointer-events-none w-fit data-[active=true]:underline underline-offset-8 decoration-dotted hover:bg-transparent hover:text-current'>
+            className='relative text-base font-normal leading-6 aria-disabled:opacity-50 aria-disabled:pointer-events-none w-fit data-[active=true]:underline underline-offset-8 decoration-dotted hover:bg-transparent hover:text-current'>
             <Link href={nav.href}>{nav.name}</Link>
         </Button>
     )

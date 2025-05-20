@@ -17,7 +17,7 @@ function Aboutus() {
     return (
         <section
             id='aboutus'
-            className='min-h-[65vh] max-w-screen-2xl mx-auto space-y-5 my-28 px-6 3xl:px-0'>
+            className='min-h-[65vh] max-w-screen-2xl mx-auto space-y-5 lg:my-28 px-6 3xl:px-0'>
             <Animate dir='up' duration={0.3}>
                 <HeadingTitle
                     title='Our Story'

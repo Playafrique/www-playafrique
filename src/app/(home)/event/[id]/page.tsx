@@ -4,12 +4,11 @@ import React from 'react'
 import Text from '@/components/atoms/Text'
 import { Button } from '@/components/ui/button'
 import { Calendar, MapPin } from 'lucide-react'
-import { getEvent } from '@/lib/helpers'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Separator } from '@/components/ui/separator'
 import { invoke } from '@/lib/invoke'
-import { EVENT, EVENT_TYPE } from '@/lib/types'
+import { EVENT_TYPE } from '@/lib/types'
 import { Metadata, ResolvingMetadata } from 'next'
 
 type MetaProps = {
@@ -87,32 +86,34 @@ async function EventPage({ params }: { params: Promise<{ id: string }> }) {
         <div className='min-h-screen py-32'>
             <div className='container mx-auto space-y-6'>
                 <BreadCrumbs />
-                <div className=' grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 relative'>
-                    <div className='col-span-1 rounded-xl overflow-hidden'>
-                        <Image
-                            width={600}
-                            height={600}
-                            alt={event?.name ?? ''}
-                            src={event?.images?.thumbnail ?? ''}
-                            className='w-full h-[40vh] object-cover object-center shadow'
-                        />
-                        <div className='w-full bg-[url("/images/pattern.png")] bg-repeat bg-contain bg-center h-6' />
+                <div className=' grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-12 md:gap-12 relative'>
+                    <div className='col-span-1'>
+                        <div className='rounded-xl overflow-hidden shadow-xl'>
+                            <Image
+                                width={600}
+                                height={600}
+                                alt={event?.name ?? ''}
+                                src={event?.images?.thumbnail ?? ''}
+                                className='w-full h-[40vh] object-cover object-center'
+                            />
+                            <div className='w-full bg-[url("/images/pattern.png")] bg-repeat bg-contain bg-center h-6' />
 
-                        <Button
-                            asChild
-                            disabled={event?.tickets_available === 'false'}
-                            className='w-full mt-4 bg-orange-500 text-base h-14 hover:bg-orange-500/80 disabled:opacity-50'>
-                            <a
-                                target='_blank'
-                                rel='noopener noreferrer'
-                                href={event?.checkout_url}>
-                                {event?.tickets_available === 'false'
-                                    ? 'Join the waitlist'
-                                    : event?.call_to_action ??
-                                      'Grab your tickets'}{' '}
-                                &rarr;
-                            </a>
-                        </Button>
+                            <Button
+                                asChild
+                                disabled={event?.tickets_available === 'false'}
+                                className='w-full mt-4 bg-orange-500 text-base h-14 hover:bg-orange-500/80 disabled:opacity-50 rounded-t-none'>
+                                <a
+                                    target='_blank'
+                                    rel='noopener noreferrer'
+                                    href={event?.checkout_url}>
+                                    {event?.tickets_available === 'false'
+                                        ? 'Join the waitlist'
+                                        : event?.call_to_action ??
+                                          'Grab your tickets'}{' '}
+                                    &rarr;
+                                </a>
+                            </Button>
+                        </div>
                     </div>
                     <div className='col-span-2 space-y-6'>
                         <div className='space-y-4'>

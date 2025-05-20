@@ -52,7 +52,7 @@ async function ServicePage({ params }: PageProps) {
         <main className='flex min-h-screen flex-col items-center'>
             <section className='w-full'>
                 <div className='container grid items-center gap-6 pt-6 md:grid-cols-2'>
-                    <div className='flex flex-col items-start gap-6 pt-20 md:py-48'>
+                    <div className=' space-y-6 pt-20 md:py-48'>
                         <Heading
                             as='h1'
                             className='leading-tight tracking-tighter text-center md:text-left'>
@@ -64,13 +64,14 @@ async function ServicePage({ params }: PageProps) {
                         <div className='flex flex-col gap-4 sm:flex-row self-center md:self-start'>
                             <ScrollToComponent
                                 size='lg'
+                                className='max-w-full md:max-w-max'
                                 elementId='contact-form'>
                                 Make an Inquiry
                                 <ArrowDown className='ml-2 h-4 w-4' />
                             </ScrollToComponent>
                         </div>
                     </div>
-                    <div className='relative aspect-video overflow-hidden'>
+                    <div className='relative aspect-auto lg:aspect-video overflow-hidden'>
                         {/* <div className='absolute inset-0 bg-gradient-to-r from-primary/20 to-transparent z-10 rounded-lg'></div> */}
                         <Animate
                             dir='up'
