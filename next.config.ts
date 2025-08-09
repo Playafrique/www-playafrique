@@ -12,6 +12,10 @@ const nextConfig: NextConfig = {
                 protocol: 'https',
                 hostname: 'uploads.tickettailor.com',
             },
+            {
+                protocol: 'https',
+                hostname: 'uploads.tickettailorassets.com',
+            },
         ],
     },
 }
