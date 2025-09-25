@@ -147,3 +147,22 @@ export type EVENT_TYPE = {
     waitlist_confirmation_message: string
     waitlist_event_page_text: string
 }
+
+export type EVENT_GALLERY = {
+    title: string
+    gallery: Array<{
+        _key?: string
+        alt?: string
+        asset?: {
+            _id: string
+            url: string
+            originalFilename?: string
+            metadata?: {
+                dimensions?: {
+                    width: number
+                    height: number
+                }
+            }
+        }
+    }>
+}

@@ -1,14 +1,10 @@
 'use client'
 
-import React from 'react'
-import Link from 'next/link'
-import { Button } from '../ui/button'
-import ListWrapper from '../atoms/ListWrapper'
-import Navlink from '../molecules/Navlink'
-import { usePathname } from 'next/navigation'
-import { cn } from '@/lib/utils'
-import Logo from '../molecules/Logo'
-import Image from 'next/image'
+import {
+    NavigationMenu,
+    NavigationMenuItem,
+    NavigationMenuList,
+} from '../ui/navigation-menu'
 import {
     Sheet,
     SheetContent,
@@ -17,23 +13,18 @@ import {
     SheetTitle,
     SheetTrigger,
 } from '../ui/sheet'
+
+import { Button } from '../ui/button'
 import Hamburger from 'hamburger-react'
+import Image from 'next/image'
+import Link from 'next/link'
+import ListWrapper from '../atoms/ListWrapper'
+import Logo from '../molecules/Logo'
+import Navlink from '../molecules/Navlink'
+import React from 'react'
+import { cn } from '@/lib/utils'
 import { useDisclosure } from '@/hooks/useDisclosure'
-import {
-    NavigationMenu,
-    NavigationMenuItem,
-    NavigationMenuList,
-} from '../ui/navigation-menu'
-// import {
-//     NavigationMenu,
-//     NavigationMenuContent,
-//     NavigationMenuIndicator,
-//     NavigationMenuItem,
-//     NavigationMenuLink,
-//     NavigationMenuList,
-//     NavigationMenuTrigger,
-//     NavigationMenuViewport,
-// } from '@/components/ui/navigation-menu'
+import { usePathname } from 'next/navigation'
 
 const navlinks = [
     {
@@ -43,6 +34,11 @@ const navlinks = [
     {
         name: 'Events',
         href: '/#events',
+        sublinks: [
+            { name: 'Events', href: '/#events' },
+            { name: 'Upcoming Events', href: '/#upcoming-events' },
+            { name: 'Gallery', href: '/gallery' },
+        ],
     },
     {
         name: 'Services',
@@ -68,10 +64,10 @@ const navlinks = [
         name: 'About Us',
         href: '/#aboutus',
     },
-    {
-        name: 'Upcoming Events',
-        href: '/#upcoming-events',
-    },
+    // {
+    //     name: 'Upcoming Events',
+    //     href: '/#upcoming-events',
+    // },
     // {
     //     name: 'Rentals',
     //     href: '/rentals site',
@@ -89,7 +85,7 @@ function Navbar() {
         <nav
             className={cn(
                 'h-20  w-full absolute z-30 bg-transparent top-0 left-0',
-                { 'bg-white shadow-sm border-b border-gray-200': !isHome }
+                { 'bg-white shadow-sm border-b border-gray-200': !isHome },
             )}>
             <div className='container mx-auto h-full flex justify-between items-center px-6 2xl:px-0'>
                 <Logo isHome={isHome} />

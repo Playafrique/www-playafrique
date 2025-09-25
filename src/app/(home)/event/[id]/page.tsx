@@ -1,15 +1,20 @@
-import Heading from '@/components/atoms/Heading'
-import BreadCrumbs from '@/components/organism/BreadCrumbs'
-import React from 'react'
-import Text from '@/components/atoms/Text'
-import { Button } from '@/components/ui/button'
 import { Calendar, MapPin } from 'lucide-react'
-import Link from 'next/link'
-import Image from 'next/image'
-import { Separator } from '@/components/ui/separator'
-import { invoke } from '@/lib/invoke'
-import { EVENT_TYPE } from '@/lib/types'
 import { Metadata, ResolvingMetadata } from 'next'
+
+import BreadCrumbs from '@/components/organism/BreadCrumbs'
+import { Button } from '@/components/ui/button'
+import { EVENT_TYPE } from '@/lib/types'
+import GalleryComponent from '@/components/organism/Gallery'
+import GalleryGrid from '@/components/organism/GalleryGrid'
+import GalleryWrapper from '@/components/organism/GalleryWrapper'
+import Heading from '@/components/atoms/Heading'
+import Image from 'next/image'
+import Link from 'next/link'
+import React from 'react'
+import { Separator } from '@/components/ui/separator'
+import Text from '@/components/atoms/Text'
+import { invoke } from '@/lib/invoke'
+import { isPast } from 'date-fns'
 
 type MetaProps = {
     params: Promise<{ id: string }>
@@ -18,7 +23,7 @@ type MetaProps = {
 
 export const generateMetadata = async (
     { params }: MetaProps,
-    parent: ResolvingMetadata
+    parent: ResolvingMetadata,
 ): Promise<Metadata> => {
     const { id } = await params
 
@@ -100,18 +105,25 @@ async function EventPage({ params }: { params: Promise<{ id: string }> }) {
 
                             <Button
                                 asChild
-                                disabled={event?.tickets_available === 'false'}
+                                disabled={
+                                    event?.tickets_available === 'false' ||
+                                    isPast(new Date(event?.end?.date))
+                                }
                                 className='w-full mt-4 bg-orange-500 text-base h-14 hover:bg-orange-500/80 disabled:opacity-50 rounded-t-none'>
-                                <a
-                                    target='_blank'
-                                    rel='noopener noreferrer'
-                                    href={event?.checkout_url}>
-                                    {event?.tickets_available === 'false'
-                                        ? 'Join the waitlist'
-                                        : event?.call_to_action ??
-                                          'Grab your tickets'}{' '}
-                                    &rarr;
-                                </a>
+                                {isPast(new Date(event?.end?.date)) ? (
+                                    <span>See what you missed below</span>
+                                ) : (
+                                    <a
+                                        target='_blank'
+                                        rel='noopener noreferrer'
+                                        href={event?.checkout_url}>
+                                        {event?.tickets_available === 'false'
+                                            ? 'Join the waitlist'
+                                            : (event?.call_to_action ??
+                                              'Grab your tickets')}{' '}
+                                        &rarr;
+                                    </a>
+                                )}
                             </Button>
                         </div>
                     </div>
@@ -157,23 +169,10 @@ async function EventPage({ params }: { params: Promise<{ id: string }> }) {
 
                         <Separator />
 
-                        {/* <div className='space-y-2'>
-                            <Heading
-                                as='h4'
-                                className='font-semibold lg:text-lg'>
-                                Location Details
-                            </Heading>
-                            <div className='w-full' id='map'>
-                                <iframe
-                                    width='100%'
-                                    height='500'
-                                    src='https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=Johannesburg,%20South%20Africa+(Cape%20Town%20Jazz%20Festival)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed'>
-                                    <a href='https://www.gps.ie/'>
-                                        gps vehicle tracker
-                                    </a>
-                                </iframe>
-                            </div>
-                        </div> */}
+                        <div className='space-y-8'>
+                            <Heading as='h3'>Re-live the moment</Heading>
+                            <GalleryGrid currentEvent={event} isLimited />
+                        </div>
                     </div>
                 </div>
             </div>

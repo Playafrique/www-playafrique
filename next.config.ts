@@ -16,6 +16,10 @@ const nextConfig: NextConfig = {
                 protocol: 'https',
                 hostname: 'uploads.tickettailorassets.com',
             },
+            {
+                protocol: 'https',
+                hostname: 'cdn.sanity.io',
+            },
         ],
     },
 }

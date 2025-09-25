@@ -1,12 +1,13 @@
-import Image from 'next/image'
-import React from 'react'
-import Heading from '../atoms/Heading'
 import { Calendar, MapPin, MoveUpRight } from 'lucide-react'
-import { format } from 'date-fns'
+
 import { Button } from '../ui/button'
-import Link from 'next/link'
 import { EVENT_TYPE } from '@/lib/types'
+import Heading from '../atoms/Heading'
+import Image from 'next/image'
+import Link from 'next/link'
+import React from 'react'
 import { cn } from '@/lib/utils'
+import { format } from 'date-fns'
 
 type EventCardProps = {
     event: EVENT_TYPE
@@ -14,6 +15,7 @@ type EventCardProps = {
 }
 
 function EventCard({ event, variant = 'default' }: EventCardProps) {
+    const activeStatuses = ['published', 'close_sales']
     return (
         <div
             className={cn(
@@ -21,7 +23,7 @@ function EventCard({ event, variant = 'default' }: EventCardProps) {
                 {
                     'bg-white text-black': variant === 'default',
                     'bg-black text-white': variant === 'dark',
-                }
+                },
             )}>
             <div>
                 <Image
@@ -47,7 +49,10 @@ function EventCard({ event, variant = 'default' }: EventCardProps) {
                             <Calendar className='w-5 h-5' />
                             <span className='text-sm'>
                                 {event?.start?.date
-                                    ? format(event?.start.date, 'dd MMM yyyy')
+                                    ? format(
+                                          new Date(event?.start.date),
+                                          'dd MMM yyyy',
+                                      )
                                     : 'TBA'}
                             </span>
                             <span>@</span>
@@ -59,7 +64,7 @@ function EventCard({ event, variant = 'default' }: EventCardProps) {
                         </div>
                     </div>
 
-                    {event?.status === 'published' ? (
+                    {activeStatuses.includes(event?.status) ? (
                         <Button
                             asChild
                             size='icon'
@@ -70,7 +75,7 @@ function EventCard({ event, variant = 'default' }: EventCardProps) {
                                 {
                                     'text-gray-300 border-gray-300 hover:bg-white hover:text-black':
                                         variant === 'dark',
-                                }
+                                },
                             )}>
                             <Link href={`/event/${event?.id}`} passHref>
                                 <MoveUpRight className='w-4 h-4' />

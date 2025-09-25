@@ -1,11 +1,12 @@
-import Image from 'next/image'
-import React from 'react'
-import Heading from '../atoms/Heading'
 import { Calendar, MapPin, MoveUpRight } from 'lucide-react'
-import { format } from 'date-fns'
+
 import { Button } from '../ui/button'
-import Link from 'next/link'
 import { EVENT } from '@/lib/types'
+import Heading from '../atoms/Heading'
+import Image from 'next/image'
+import Link from 'next/link'
+import React from 'react'
+import { format } from 'date-fns'
 
 type FeaturedCardProps = {
     event: EVENT
@@ -38,8 +39,8 @@ function FeaturedCard({ event }: FeaturedCardProps) {
                             <Calendar className='w-4 h-4 text-white' />
                             <p className='text-sm'>
                                 {format(
-                                    event.next_occurrence_date.date,
-                                    'dd MMM yyyy HH:mm a'
+                                    new Date(event.next_occurrence_date.date),
+                                    'dd MMM yyyy HH:mm a',
                                 )}
                             </p>
                         </div>
