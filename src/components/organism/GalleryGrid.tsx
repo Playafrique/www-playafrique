@@ -39,6 +39,14 @@ async function GalleryGrid({
 
     const LIMIT = 6
 
+    if (!resp?.gallery) {
+        return (
+            <div className='text-left text-lg text-foreground'>
+                Gallery coming soon.. 🤗
+            </div>
+        )
+    }
+
     if (isLimited && resp?.gallery.length > LIMIT) {
         resp.gallery = resp.gallery.slice(0, LIMIT)
     }
