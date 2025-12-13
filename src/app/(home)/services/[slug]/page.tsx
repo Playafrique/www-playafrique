@@ -16,7 +16,7 @@ type MetaProps = {
 
 export const generateMetadata = async (
     { params }: MetaProps,
-    parent: ResolvingMetadata
+    parent: ResolvingMetadata,
 ): Promise<Metadata> => {
     const { slug } = await params
     const service = getServicePageContent(slug as SLUG)
@@ -50,8 +50,8 @@ async function ServicePage({ params }: PageProps) {
 
     return (
         <main className='flex min-h-screen flex-col items-center'>
-            <section className='w-full'>
-                <div className='container grid items-center gap-6 pt-6 md:grid-cols-2'>
+            <section className='w-full bg-green-200'>
+                <div className='container grid items-center gap-6 md:grid-cols-2'>
                     <div className=' space-y-6 pt-20 md:py-48'>
                         <Heading
                             as='h1'
@@ -71,31 +71,28 @@ async function ServicePage({ params }: PageProps) {
                             </ScrollToComponent>
                         </div>
                     </div>
-                    <div className='relative aspect-auto lg:aspect-video overflow-hidden'>
-                        {/* <div className='absolute inset-0 bg-gradient-to-r from-primary/20 to-transparent z-10 rounded-lg'></div> */}
+                    <div className='relative aspect-square overflow-hidden'>
                         <Animate
                             dir='up'
                             duration={0.6}
-                            className='col-span-1 lg:col-span-2 bg-white w-full relative overflow-hidden shadow-sm rounded-2xl border'>
-                            <video
-                                loop
-                                muted
-                                autoPlay
-                                className='w-full h-full xl:h-full object-cover object-center'>
-                                <source
-                                    src='/videos/services.mp4'
-                                    type='video/mp4'
-                                />
-                                Your browser does not support the video tag.
-                            </video>
+                            className='col-span-1 lg:col-span-2 w-full relative overflow-hidden shadow-sm min-h-[700px]'>
+                            <Image
+                                fill
+                                src='https://cdn.sanity.io/images/jx89cb4b/production/d0753d8231921ad7068003454d76bcb8340b3013-2400x3600.jpg'
+                                alt='Services visualization'
+                                className='object-cover object-center hover:scale-105 transition-transform duration-700'
+                                sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw'
+                                placeholder='blur'
+                                blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8/+F9PQAI8wNPvd7POQAAAABJRU5ErkJggg=='
+                            />
                         </Animate>
                     </div>
                 </div>
-                <div className='w-full bg-[url("/images/pattern.png")] bg-repeat bg-contain bg-center h-6' />
             </section>
 
             {/* Features Section */}
-            <section className='w-full bg-gray-50/90 py-32'>
+            <section className='w-full bg-gray-50/90 py-32 relative'>
+                <div className='w-full bg-[url("/images/pattern.png")] bg-repeat bg-contain bg-center h-6 absolute top-0 left-0 right-0' />
                 <div className='container'>
                     <Heading as='h2' className='mb-8 text-center text-3xl'>
                         Why Choose Our Services

@@ -64,18 +64,6 @@ const navlinks = [
         name: 'About Us',
         href: '/#aboutus',
     },
-    // {
-    //     name: 'Upcoming Events',
-    //     href: '/#upcoming-events',
-    // },
-    // {
-    //     name: 'Rentals',
-    //     href: '/rentals site',
-    // },
-    // {
-    //     name: 'Shop',
-    //     href: '/rentals site',
-    // },
 ]
 
 function Navbar() {
@@ -85,7 +73,10 @@ function Navbar() {
         <nav
             className={cn(
                 'h-20  w-full absolute z-30 bg-transparent top-0 left-0',
-                { 'bg-white shadow-sm border-b border-gray-200': !isHome },
+                {
+                    'bg-white shadow-sm relative border-b border-gray-200':
+                        !isHome,
+                },
             )}>
             <div className='container mx-auto h-full flex justify-between items-center px-6 2xl:px-0'>
                 <Logo isHome={isHome} />
@@ -152,7 +143,7 @@ function MobileNav({ isHome }: { isHome?: boolean }) {
                         className='w-20 h-20'
                     />
                     <SheetTitle className='sr-only'>
-                        Play Afrique navigation
+                        Play Afrique CIC navigation
                     </SheetTitle>
                     <SheetDescription className='sr-only'>
                         Find our mobile navigation here

@@ -1,15 +1,39 @@
 import React from 'react'
+import Image from 'next/image'
 import Heading from '../atoms/Heading'
 import HeadingTitle from '../molecules/HeadingTitle'
 import ListWrapper from '../atoms/ListWrapper'
 import Animate from '../atoms/Animate'
+import Link from 'next/link'
+
+import { ArrowUpRight } from 'lucide-react'
 
 const services = [
-    'African Themed Events & Festivals',
-    'Event Catering',
-    'Cultural Props Rentals',
-    'Pop-up Markets',
-    'Diversity Workshops',
+    {
+        title: 'African Themed Events & Festivals',
+        image: '/images/heroimg.jpg',
+        href: '/services/african-themed-events-festivals',
+    },
+    {
+        title: 'Event Catering',
+        image: '/images/heroimg.jpg',
+        href: '/services/event-catering',
+    },
+    {
+        title: 'Cultural Props Rentals',
+        image: '/images/heroimg.jpg',
+        href: '/services/cultural-props-rentals',
+    },
+    {
+        title: 'Pop-up Markets',
+        image: '/images/heroimg.jpg',
+        href: '/services/pop-up-markets',
+    },
+    {
+        title: 'Diversity Workshops',
+        image: '/images/heroimg.jpg',
+        href: '/services/diversity-workshops',
+    },
 ]
 
 function Services() {
@@ -24,38 +48,54 @@ function Services() {
                     text='Find a service that you need and we will deliver it to you'
                 />
             </Animate>
-            <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-4'>
+            <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-6'>
                 <Animate
                     dir='up'
                     duration={0.6}
-                    className='col-span-1 lg:col-span-2 bg-white w-full relative overflow-hidden shadow-sm rounded-2xl border'>
-                    <video
-                        loop
-                        muted
-                        autoPlay
-                        className='w-full h-full lg:h-96 xl:h-full object-cover object-center'>
-                        <source src='/videos/services.mp4' type='video/mp4' />
-                        Your browser does not support the video tag.
-                    </video>
+                    className='col-span-1 lg:col-span-2 bg-gray-100 w-full relative overflow-hidden shadow-sm rounded-3xl border min-h-[700px]'>
+                    <Image
+                        src='https://cdn.sanity.io/images/jx89cb4b/production/2f04fdf4352f1c59890f209ad7e4a98789378743-2400x3600.jpg'
+                        alt='Services visualization'
+                        fill
+                        className='object-cover object-center hover:scale-105 transition-transform duration-700'
+                        sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw'
+                        placeholder='blur'
+                        blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8/+F9PQAI8wNPvd7POQAAAABJRU5ErkJggg=='
+                    />
                 </Animate>
 
-                <div className='h-full w-full col-span-1 lg:col-span-3 grid grid-cols-1 lg:grid-cols-3 gap-4'>
-                    <ListWrapper list={services} keyExtractor={(srv) => srv}>
+                <div className='h-full w-full col-span-1 lg:col-span-3 grid grid-cols-1 lg:grid-cols-3 gap-6'>
+                    <ListWrapper
+                        list={services}
+                        keyExtractor={(srv) => srv.title}>
                         {(service, idx) => (
                             <Animate
                                 dir='up'
                                 duration={(idx / 2) * 0.5 + 0.5}
-                                className='group col-span-1 min-h-56 relative flex items-center justify-center w-full h-full px-2 rounded-2xl bg-orange-50 border'>
-                                <Heading
-                                    as='h3'
-                                    className='relative text-center text-2xl z-20 font-bold'>
-                                    {service}
-                                </Heading>
-                                <div className='absolute size-32 border border-gray-100 rounded-full bg-white z-10 shadow group-hover:shadow-lg transition-all' />
-                                <div className='absolute size-40 border border-gray-200 rounded-full overflow-hidden opacity-50 '>
-                                    <div className='w-full bg-[url("/images/pattern.png")] bg-repeat bg-contain bg-center h-full opacity-50' />
+                                className='group col-span-1 min-h-80 relative flex items-end justify-start w-full h-full rounded-2xl overflow-hidden border bg-brand-300'>
+                                {/* <Image
+                                    src={service.image}
+                                    alt={service.title}
+                                    fill
+                                    className='object-cover object-center opacity-60 group-hover:opacity-40 transition-opacity duration-500 group-hover:scale-105 transform'
+                                /> */}
+                                {/* <div className='absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-transparent' /> */}
+
+                                <div className='relative z-20 w-full h-full p-6 flex flex-col justify-start'>
+                                    <Heading
+                                        as='h3'
+                                        className='text-xl font-bold max-w-[90%] leading-tight'>
+                                        {service.title}
+                                    </Heading>
                                 </div>
-                                <div className='w-full bg-[url("/images/pattern.png")] absolute bottom-0 bg-repeat bg-contain bg-center h-4 lg:h-6 opacity-50' />
+
+                                <div className='absolute bottom-0 right-0 bg-black w-24 h-20 rounded-tl-[2.5rem] flex items-center justify-center z-20'>
+                                    <Link href={service.href} passHref>
+                                        <div className='bg-black p-3 rounded-full text-white transform group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform duration-300'>
+                                            <ArrowUpRight className='size-6' />
+                                        </div>
+                                    </Link>
+                                </div>
                             </Animate>
                         )}
                     </ListWrapper>

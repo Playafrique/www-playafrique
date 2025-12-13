@@ -24,21 +24,20 @@ async function Home() {
                         <Heading
                             as='h1'
                             className='text-2xl lg:text-5xl max-w-5xl text-center text-white'>
-                            Experience the Pulse of Africa: Discover Events That
-                            Inspire
+                            Where African Creativity Thrives
                         </Heading>
                         <Text className='text-center max-w-xl text-gray-100 mx-auto'>
-                            From vibrant festivals to intimate gatherings, Play
-                            Afrique connects you to the heart of African culture
-                            and global happenings.
+                            Empowering African and Afro-diasporic creatives
+                            through collaboration, culture, and community.
                         </Text>
                     </Animate>
+
                     <Animate dir='up' duration={0.5}>
                         <Button
                             asChild
                             variant='ghost'
                             className='bg-orange-500/80 backdrop-blur-lg text-white hover:bg-orange-500 hover:text-white min-w-48'>
-                            <Link href='/#events'>Explore Events &rarr;</Link>
+                            <Link href='/join'>Become a member &rarr;</Link>
                         </Button>
                     </Animate>
                 </div>
