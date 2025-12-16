@@ -17,16 +17,16 @@ export const revalidate = 600 // 10 minutes
 
 async function Home() {
     return (
-        <main className='min-h-screen bg-gray-50'>
-            <section id='hero' className='h-[65vh] w-full relative'>
+        <main className='min-h-screen'>
+            <section id='hero' className='h-[50vh] md:h-[65vh] w-full relative'>
                 <div className='flex flex-col items-center justify-center gap-8 absolute inset-0 backdrop-blur-sm text-white z-20 w-full py-16 h-full bg-black/50 px-6 2xl:px-0'>
                     <Animate dir='up' duration={0.3} className='space-y-6'>
                         <Heading
                             as='h1'
-                            className='text-2xl lg:text-5xl max-w-5xl text-center text-white'>
+                            className='text-2xl md:text-5xl max-w-5xl text-center text-white dark:text-gray-100'>
                             Where African Creativity Thrives
                         </Heading>
-                        <Text className='text-center max-w-xl text-gray-100 mx-auto'>
+                        <Text className='text-center max-w-xl text-gray-100 dark:text-gray-100 mx-auto'>
                             Empowering African and Afro-diasporic creatives
                             through collaboration, culture, and community.
                         </Text>
@@ -68,7 +68,7 @@ async function Home() {
             </Suspense>
             <section
                 id='contact-us'
-                className='h-auto min-h-[30rem] py-20 md:py-28 lg:py-40 bg-white'>
+                className='h-auto min-h-[30rem] py-20 md:py-28 lg:py-40 dark:bg-slate-800'>
                 <div className='max-w-screen-2xl mx-auto space-y-6 px-6 3xl:px-0'>
                     <Animate dir='up' duration={0.2}>
                         <HeadingTitle

@@ -50,7 +50,7 @@ async function ServicePage({ params }: PageProps) {
 
     return (
         <main className='flex min-h-screen flex-col items-center'>
-            <section className='w-full bg-green-200'>
+            <section className='w-full bg-green-200 dark:bg-green-950'>
                 <div className='container grid items-center gap-6 md:grid-cols-2'>
                     <div className=' space-y-6 pt-20 md:py-48'>
                         <Heading
@@ -61,7 +61,7 @@ async function ServicePage({ params }: PageProps) {
                         <Text className='max-w-[600px] text-muted-foreground text-center md:text-left'>
                             {service?.description}
                         </Text>
-                        <div className='flex flex-col gap-4 sm:flex-row self-center md:self-start'>
+                        <div className='flex flex-col gap-4 sm:flex-row self-center lg:self-start pb-20 md:pb-0'>
                             <ScrollToComponent
                                 size='lg'
                                 className='max-w-full md:max-w-max'
@@ -71,7 +71,7 @@ async function ServicePage({ params }: PageProps) {
                             </ScrollToComponent>
                         </div>
                     </div>
-                    <div className='relative aspect-square overflow-hidden'>
+                    <div className='relative aspect-square overflow-hidden hidden md:block'>
                         <Animate
                             dir='up'
                             duration={0.6}
@@ -91,7 +91,7 @@ async function ServicePage({ params }: PageProps) {
             </section>
 
             {/* Features Section */}
-            <section className='w-full bg-gray-50/90 py-32 relative'>
+            <section className='w-full bg-gray-50/90 py-32 relative dark:bg-gray-950'>
                 <div className='w-full bg-[url("/images/pattern.png")] bg-repeat bg-contain bg-center h-6 absolute top-0 left-0 right-0' />
                 <div className='container'>
                     <Heading as='h2' className='mb-8 text-center text-3xl'>
@@ -117,7 +117,7 @@ async function ServicePage({ params }: PageProps) {
                         ].map((feature, index) => (
                             <div
                                 key={index}
-                                className='rounded-lg border bg-card p-6 shadow-sm'>
+                                className='rounded-lg border bg-card p-6 shadow-sm dark:bg-gray-800 dark:border-gray-700'>
                                 <Heading
                                     as='h3'
                                     className='mb-2 text-xl font-semibold'>

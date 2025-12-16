@@ -64,6 +64,10 @@ const navlinks = [
         name: 'About Us',
         href: '/#aboutus',
     },
+    {
+        name: 'Contact',
+        href: '/#contact-us',
+    },
 ]
 
 function Navbar() {
@@ -74,7 +78,7 @@ function Navbar() {
             className={cn(
                 'h-20  w-full absolute z-30 bg-transparent top-0 left-0',
                 {
-                    'bg-white shadow-sm relative border-b border-gray-200':
+                    'bg-white dark:bg-gray-900 shadow-sm relative border-b border-gray-200 dark:border-gray-800':
                         !isHome,
                 },
             )}>
@@ -94,11 +98,13 @@ function Navbar() {
                                 </NavigationMenuItem>
                             )}
                         </ListWrapper>
+                        {/* <Link href='/#contact-us'>Contact Us</Link> */}
+
                         <Button
                             asChild
-                            variant={isHome ? 'outline' : 'default'}
-                            className={isHome ? 'bg-transparent' : ''}>
-                            <Link href='/#contact-us'>Contact Us</Link>
+                            variant='default'
+                            className={isHome ? 'bg-white hidden' : ''}>
+                            <Link href='/#contact-us'>Become a member</Link>
                         </Button>
                     </NavigationMenuList>
                 </NavigationMenu>

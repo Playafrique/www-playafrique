@@ -4,7 +4,7 @@ import Image from 'next/image'
 function JoinPage() {
     return (
         <main className='w-full min-h-screen grid lg:grid-cols-2'>
-            <div className='flex items-center justify-center p-8 lg:p-16 xl:p-24 bg-white order-2 lg:order-1'>
+            <div className='flex items-center justify-center p-8 lg:p-16 xl:p-24 bg-white dark:bg-slate-900 order-2 lg:order-1'>
                 <div className='w-full max-w-lg'>
                     <JoinForm />
                 </div>

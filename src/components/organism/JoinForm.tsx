@@ -84,7 +84,7 @@ export default function JoinForm({ defaultValues = {}, hideTitle }: Props) {
                 <div className='mb-10'>
                     <Heading
                         as='h2'
-                        className='text-xl lg:text-3xl font-bold text-gray-900 flex items-center'>
+                        className='text-xl lg:text-3xl font-bold text-gray-900 dark:text-white flex items-center'>
                         Join our community
                     </Heading>
                 </div>

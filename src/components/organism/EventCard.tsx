@@ -22,7 +22,8 @@ function EventCard({ event, variant = 'default' }: EventCardProps) {
                 'h-auto flex flex-col justify-between rounded-xl overflow-hidden relative shadow-sm',
                 {
                     'bg-white text-black': variant === 'default',
-                    'bg-black text-white': variant === 'dark',
+                    'bg-slate-800 text-white dark:bg-slate-800':
+                        variant === 'dark',
                 },
             )}>
             <div>
@@ -71,7 +72,7 @@ function EventCard({ event, variant = 'default' }: EventCardProps) {
                             title={`View ${event.name}`}
                             variant='outline'
                             className={cn(
-                                'bg-transparent text-gray-600 border-gray-600  rounded-full w-12 h-12 hover:bg-black hover:text-white transition-all ease-in-out duration-200',
+                                'bg-transparent text-gray-600 border-gray-600 dark:text-gray-300 dark:border-gray-300  rounded-full w-12 h-12 hover:bg-black dark:hover:bg-slate-900 hover:text-white transition-all ease-in-out duration-200',
                                 {
                                     'text-gray-300 border-gray-300 hover:bg-white hover:text-black':
                                         variant === 'dark',

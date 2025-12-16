@@ -42,7 +42,7 @@ type RootLayoutProps = {
 
 export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
     return (
-        <html lang='en-GB'>
+        <html lang='en-GB' className='scroll-smooth'>
             <head>
                 <meta charSet='utf-8' />
                 <meta httpEquiv='X-UA-Compatible' content='IE=edge' />
@@ -78,7 +78,7 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
                 />
                 <link rel='manifest' href='/images/site.webmanifest' />
             </head>
-            <body className='font-sans'>
+            <body className='font-sans bg-gray-50 dark:bg-slate-900'>
                 {/* <CountdownProvider targetDate={new Date('2025-02-01T17:45:00')}> */}
                 <ReactQueryProvider>
                     {children}

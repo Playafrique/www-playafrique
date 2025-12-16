@@ -26,9 +26,9 @@ function Aboutus() {
                 />
             </Animate>
             <Animate dir='up' duration={0.5}>
-                <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-6'>
-                    <div className='col-span-1 lg:col-span-3 grid grid-cols-1 lg:grid-cols-2 gap-y-6'>
-                        <Card className='col-span-1 lg:col-span-3 bg-white w-full relative overflow-hidden'>
+                <div className='grid grid-cols-1 lg:grid-cols-5 gap-6 h-full'>
+                    <div className='col-span-1 lg:col-span-3 flex flex-col gap-6 h-full'>
+                        <Card className='bg-white w-full relative overflow-hidden flex-shrink-0'>
                             <CardHeader>
                                 <Heading
                                     as='h3'
@@ -57,8 +57,8 @@ function Aboutus() {
                             </CardContent>
                         </Card>
 
-                        <div className='col-span-1 lg:col-span-2 grid grid-cols-1 lg:grid-cols-2 gap-6'>
-                            <Card className='rounded-xl shadow-sm bg-white border relative overflow-hidden'>
+                        <div className='grid grid-cols-1 md:grid-cols-2 gap-6 h-full'>
+                            <Card className='rounded-xl shadow-sm bg-white border relative overflow-hidden h-full'>
                                 <div className='w-full bg-[url("/images/pattern.png")] bg-repeat bg-contain bg-center h-5 absolute bottom-0 left-0' />
 
                                 <CardHeader className='flex flex-row items-center gap-3'>
@@ -81,7 +81,7 @@ function Aboutus() {
                                 </CardContent>
                                 <CardFooter />
                             </Card>
-                            <Card className='rounded-xl shadow-sm bg-white border relative overflow-hidden'>
+                            <Card className='rounded-xl shadow-sm bg-white border relative overflow-hidden h-full'>
                                 <div className='w-full bg-[url("/images/pattern.png")] bg-repeat bg-contain bg-center h-5 absolute bottom-0 left-0' />
 
                                 <CardHeader className='flex flex-row items-center gap-3'>
@@ -107,13 +107,13 @@ function Aboutus() {
                         </div>
                     </div>
 
-                    <div className='col-span-1 lg:col-span-2 rounded-xl shadow-sm overflow-hidden h-full'>
+                    <div className='col-span-1 lg:col-span-2 rounded-xl shadow-sm overflow-hidden h-96 lg:h-full relative min-h-[400px]'>
                         <Image
                             alt='hero'
                             width={300}
                             height={400}
                             src='https://cdn.sanity.io/images/jx89cb4b/production/33fb953c86e6b7ec77d4c9b5a73aac13a5e5b59f-2400x3600.jpg'
-                            className='w-full h-full object-cover object-center hover:scale-105 transition-transform duration-700'
+                            className='w-full h-full object-cover object-top hover:scale-105 transition-transform duration-700'
                         />
                     </div>
                 </div>

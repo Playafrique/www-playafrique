@@ -48,11 +48,11 @@ function Services() {
                     text='Find a service that you need and we will deliver it to you'
                 />
             </Animate>
-            <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-6'>
+            <div className='grid grid-cols-1 lg:grid-cols-5 gap-6'>
                 <Animate
                     dir='up'
                     duration={0.6}
-                    className='col-span-1 lg:col-span-2 bg-gray-100 w-full relative overflow-hidden shadow-sm rounded-3xl border min-h-[700px]'>
+                    className='col-span-1 lg:col-span-2 bg-gray-100 w-full relative overflow-hidden shadow-sm rounded-3xl h-96 lg:h-full min-h-[400px]'>
                     <Image
                         src='https://cdn.sanity.io/images/jx89cb4b/production/2f04fdf4352f1c59890f209ad7e4a98789378743-2400x3600.jpg'
                         alt='Services visualization'
@@ -64,7 +64,7 @@ function Services() {
                     />
                 </Animate>
 
-                <div className='h-full w-full col-span-1 lg:col-span-3 grid grid-cols-1 lg:grid-cols-3 gap-6'>
+                <div className='h-full w-full col-span-1 lg:col-span-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
                     <ListWrapper
                         list={services}
                         keyExtractor={(srv) => srv.title}>
@@ -72,15 +72,7 @@ function Services() {
                             <Animate
                                 dir='up'
                                 duration={(idx / 2) * 0.5 + 0.5}
-                                className='group col-span-1 min-h-80 relative flex items-end justify-start w-full h-full rounded-2xl overflow-hidden border bg-brand-300'>
-                                {/* <Image
-                                    src={service.image}
-                                    alt={service.title}
-                                    fill
-                                    className='object-cover object-center opacity-60 group-hover:opacity-40 transition-opacity duration-500 group-hover:scale-105 transform'
-                                /> */}
-                                {/* <div className='absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-transparent' /> */}
-
+                                className='group col-span-1 min-h-80 relative flex items-end justify-start w-full h-full rounded-2xl overflow-hidden bg-brand-300'>
                                 <div className='relative z-20 w-full h-full p-6 flex flex-col justify-start'>
                                     <Heading
                                         as='h3'
@@ -89,9 +81,9 @@ function Services() {
                                     </Heading>
                                 </div>
 
-                                <div className='absolute bottom-0 right-0 bg-black w-24 h-20 rounded-tl-[2.5rem] flex items-center justify-center z-20'>
+                                <div className='absolute bottom-0 -right-2 bg-black dark:bg-slate-900 w-24 h-20 rounded-tl-[2.5rem] flex items-center justify-center z-20'>
                                     <Link href={service.href} passHref>
-                                        <div className='bg-black p-3 rounded-full text-white transform group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform duration-300'>
+                                        <div className='bg-black dark:bg-slate-900 p-3 rounded-full text-white transform group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform duration-300'>
                                             <ArrowUpRight className='size-6' />
                                         </div>
                                     </Link>

@@ -102,12 +102,12 @@ export default function ContactForm({ defaultValues = {}, hideTitle }: Props) {
                 <div className='mb-10'>
                     <Heading
                         as='h2'
-                        className='text-2xl lg:text-5xl font-bold text-gray-900 mb-2'>
+                        className='text-2xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-2'>
                         We&apos;d love to hear from you,
                     </Heading>
                     <Heading
                         as='h2'
-                        className='text-2xl lg:text-5xl font-bold text-gray-900 flex items-center'>
+                        className='text-2xl lg:text-5xl font-bold text-gray-900 dark:text-white flex items-center'>
                         Get in touch <span className='ml-2'>👋</span>
                     </Heading>
                 </div>
@@ -119,7 +119,7 @@ export default function ContactForm({ defaultValues = {}, hideTitle }: Props) {
                     className='my-6'
                     useExistAnimation={true}>
                     <Alert variant='default'>
-                        <CheckCircle className='size-5 text-white' />
+                        <CheckCircle className='size-5 text-white dark:text-black' />
                         <AlertTitle className=' font-medium'>
                             Your message has been sent!
                         </AlertTitle>
@@ -135,11 +135,11 @@ export default function ContactForm({ defaultValues = {}, hideTitle }: Props) {
                 <Animate dir='down' duration={0.5} className='my-6'>
                     <Alert
                         variant='default'
-                        className='bg-red-50 text-red-800 border-red-200'>
-                        <AlertTitle className='text-red-800 font-medium'>
+                        className='bg-red-50 text-red-800 border-red-200 dark:bg-red-50 dark:text-red-800 dark:border-red-200'>
+                        <AlertTitle className='text-red-800 font-medium dark:text-red-800'>
                             Something went wrong!
                         </AlertTitle>
-                        <AlertDescription className='text-red-700'>
+                        <AlertDescription className='text-red-700 dark:text-red-700'>
                             {error}
                         </AlertDescription>
                     </Alert>
@@ -161,7 +161,7 @@ export default function ContactForm({ defaultValues = {}, hideTitle }: Props) {
                                         <Input
                                             {...field}
                                             placeholder='Your Name'
-                                            className='h-14 bg-gray-50'
+                                            className='h-14 bg-gray-50 dark:bg-gray-950'
                                         />
                                     </FormControl>
                                     <FormMessage />
@@ -182,7 +182,7 @@ export default function ContactForm({ defaultValues = {}, hideTitle }: Props) {
                                             {...field}
                                             type='email'
                                             placeholder='example@gmail.com'
-                                            className='h-14 bg-gray-50'
+                                            className='h-14 bg-gray-50 dark:bg-gray-950'
                                         />
                                     </FormControl>
                                     <FormMessage />
@@ -203,8 +203,11 @@ export default function ContactForm({ defaultValues = {}, hideTitle }: Props) {
                                     onValueChange={field.onChange}
                                     defaultValue={field.value}>
                                     <FormControl>
-                                        <SelectTrigger className='h-14 bg-gray-50'>
-                                            <SelectValue placeholder='Select your interest' />
+                                        <SelectTrigger className='h-14 bg-gray-50 dark:bg-gray-950 dark:text-gray-400'>
+                                            <SelectValue
+                                                className='text-gray-500 dark:text-gray-400'
+                                                placeholder='Select your interest'
+                                            />
                                         </SelectTrigger>
                                     </FormControl>
                                     <SelectContent>
@@ -214,7 +217,9 @@ export default function ContactForm({ defaultValues = {}, hideTitle }: Props) {
                                                 `${item.label}-${item?.value}`
                                             }>
                                             {(item) => (
-                                                <SelectItem value={item?.value}>
+                                                <SelectItem
+                                                    value={item?.value}
+                                                    className='text-gray-500 dark:text-gray-400'>
                                                     {item?.label}
                                                 </SelectItem>
                                             )}
@@ -238,7 +243,7 @@ export default function ContactForm({ defaultValues = {}, hideTitle }: Props) {
                                     <Textarea
                                         {...field}
                                         placeholder='Your Message Here ...'
-                                        className='min-h-32 resize-y bg-gray-50'
+                                        className='min-h-32 resize-y bg-gray-50 dark:bg-gray-950'
                                     />
                                 </FormControl>
                                 <FormMessage />
@@ -248,7 +253,7 @@ export default function ContactForm({ defaultValues = {}, hideTitle }: Props) {
 
                     <Button
                         type='submit'
-                        className='h-14 px-6 bg-gray-900 hover:bg-gray-800 text-white w-full md:w-auto'
+                        className='h-14 px-6 bg-gray-900 hover:bg-gray-800 text-white w-full md:w-auto dark:bg-gray-50 dark:hover:bg-gray-200'
                         disabled={isPending}>
                         {isPending ? 'Sending...' : 'Send Message'}{' '}
                         {!isPending && (

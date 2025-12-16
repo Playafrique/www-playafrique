@@ -21,9 +21,6 @@ async function GalleryPage({
     })
 
     const { event } = await searchParams
-
-    console.log('Gallery Page Params:', event)
-
     const activeStatuses = ['published', 'close_sales']
 
     if (error) {
@@ -37,7 +34,7 @@ async function GalleryPage({
 
     return (
         <div className='min-h-screen font-sans'>
-            <section id='hero' className='h-[45vh] w-full relative mt-20'>
+            <section id='hero' className='h-[45vh] w-full relative'>
                 <div className='flex flex-col items-start justify-center gap-8 absolute inset-0 backdrop-blur-sm text-black z-20 w-full h-full bg-gradient-to-r from-white via-white/80 to-transparent px-6 2xl:px-0'>
                     <div className=' w-full max-w-screen-xl mx-auto space-y-6'>
                         <Animate dir='up' duration={0.3} className='space-y-6'>
