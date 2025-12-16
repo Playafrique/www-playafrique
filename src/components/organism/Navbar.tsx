@@ -98,13 +98,12 @@ function Navbar() {
                                 </NavigationMenuItem>
                             )}
                         </ListWrapper>
-                        {/* <Link href='/#contact-us'>Contact Us</Link> */}
 
                         <Button
                             asChild
                             variant='default'
                             className={isHome ? 'bg-white hidden' : ''}>
-                            <Link href='/#contact-us'>Become a member</Link>
+                            <Link href='/join'>Become a member</Link>
                         </Button>
                     </NavigationMenuList>
                 </NavigationMenu>
