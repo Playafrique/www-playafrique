@@ -4,9 +4,7 @@ import { Metadata, ResolvingMetadata } from 'next'
 import BreadCrumbs from '@/components/organism/BreadCrumbs'
 import { Button } from '@/components/ui/button'
 import { EVENT_TYPE } from '@/lib/types'
-import GalleryComponent from '@/components/organism/Gallery'
 import GalleryGrid from '@/components/organism/GalleryGrid'
-import GalleryWrapper from '@/components/organism/GalleryWrapper'
 import Heading from '@/components/atoms/Heading'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -66,7 +64,7 @@ async function EventPage({ params }: { params: Promise<{ id: string }> }) {
 
     if (!event || error)
         return (
-            <div className='min-h-screen bg-gray-50 flex flex-col items-center justify-center gap-6'>
+            <div className='min-h-screen flex-col items-center justify-center gap-6'>
                 <Heading as='h1' className='text-5xl max-w-lg text-center'>
                     Event not found!!!
                 </Heading>
@@ -88,7 +86,7 @@ async function EventPage({ params }: { params: Promise<{ id: string }> }) {
         )
 
     return (
-        <div className='min-h-screen py-32'>
+        <div className='min-h-screen py-12'>
             <div className='container mx-auto space-y-6'>
                 <BreadCrumbs />
                 <div className=' grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-12 md:gap-12 relative'>
@@ -109,7 +107,7 @@ async function EventPage({ params }: { params: Promise<{ id: string }> }) {
                                     event?.tickets_available === 'false' ||
                                     isPast(new Date(event?.end?.date))
                                 }
-                                className='w-full mt-4 bg-orange-500 text-base h-14 hover:bg-orange-500/80 disabled:opacity-50 rounded-t-none'>
+                                className='w-full mt-4 bg-orange-500 dark:bg-orange-600 text-base h-14 hover:bg-orange-500/80 dark:hover:bg-orange-700 disabled:opacity-50 rounded-t-none'>
                                 {isPast(new Date(event?.end?.date)) ? (
                                     <span>See what you missed below</span>
                                 ) : (
@@ -129,17 +127,23 @@ async function EventPage({ params }: { params: Promise<{ id: string }> }) {
                     </div>
                     <div className='col-span-2 space-y-6'>
                         <div className='space-y-4'>
-                            <Heading as='h1' className='font-bold text-2xl'>
+                            <Heading
+                                as='h1'
+                                className='font-bold text-2xl dark:text-white'>
                                 {event?.name ?? ''}
                             </Heading>
 
-                            <div className=' space-y-2'>
+                            <div className='space-y-2 dark:text-gray-300'>
                                 <div className='flex items-center gap-2'>
                                     <Calendar className='w-4 h-4' />
                                     <p className='text-sm'>
-                                        {event?.start?.formatted ?? 'TBD'} to{' '}
-                                        {event?.end?.formatted &&
-                                            `${event?.end?.formatted}`}
+                                        {event?.start?.formatted ?? 'TBD'}
+                                    </p>
+                                </div>
+                                <div className='flex items-center gap-2'>
+                                    <Calendar className='w-4 h-4' />
+                                    <p className='text-sm'>
+                                        {event?.end?.formatted ?? 'TBD'}
                                     </p>
                                 </div>
                                 <div className='flex items-center gap-2'>
@@ -154,14 +158,14 @@ async function EventPage({ params }: { params: Promise<{ id: string }> }) {
 
                         <Separator />
 
-                        <div className='space-y-2'>
+                        <div className='space-y-2 dark:text-gray-300'>
                             <Heading
                                 as='h4'
-                                className='font-semibold lg:text-lg'>
+                                className='font-semibold lg:text-lg dark:text-white'>
                                 About the Event
                             </Heading>
                             <div
-                                className='prose font-sans'
+                                className='prose font-sans dark:text-gray-400'
                                 dangerouslySetInnerHTML={{
                                     __html: event?.description,
                                 }}></div>
@@ -169,7 +173,7 @@ async function EventPage({ params }: { params: Promise<{ id: string }> }) {
 
                         <Separator />
 
-                        <div className='space-y-8'>
+                        <div className='space-y-8 dark:text-gray-300'>
                             <Heading as='h3'>Re-live the moment</Heading>
                             <GalleryGrid currentEvent={event} isLimited />
                         </div>
