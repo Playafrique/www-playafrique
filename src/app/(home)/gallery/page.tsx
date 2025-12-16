@@ -35,7 +35,7 @@ async function GalleryPage({
     return (
         <div className='min-h-screen font-sans'>
             <section id='hero' className='h-[45vh] w-full relative'>
-                <div className='flex flex-col items-start justify-center gap-8 absolute inset-0 backdrop-blur-sm text-black z-20 w-full h-full bg-gradient-to-r from-white via-white/80 to-transparent px-6 2xl:px-0'>
+                <div className='flex flex-col items-start justify-center gap-8 absolute inset-0 backdrop-blur-sm text-black z-20 w-full h-full bg-gradient-to-r from-white via-white/80 to-transparent px-6 2xl:px-0 dark:bg-gradient-to-r dark:from-black dark:via-black/80 dark:to-transparent'>
                     <div className=' w-full max-w-screen-xl mx-auto space-y-6'>
                         <Animate dir='up' duration={0.3} className='space-y-6'>
                             <Heading
@@ -54,7 +54,7 @@ async function GalleryPage({
                                 <h3 className='text-lg font-semibold text-gray-900 mb-4'>
                                     Select an event
                                 </h3>
-                                <EventSelector events={events || []} />
+                                <EventSelector events={events ?? []} />
                             </div>
                         </Animate>
                     </div>
@@ -72,8 +72,8 @@ async function GalleryPage({
             </section>
 
             <GalleryWrapper
-                events={events || []}
-                selectedEvent={event || null}
+                events={events ?? []}
+                selectedEvent={event ?? null}
             />
         </div>
     )

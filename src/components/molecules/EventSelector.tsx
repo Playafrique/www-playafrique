@@ -15,7 +15,7 @@ import { EVENT_TYPE } from '@/lib/types'
 function EventSelector({ events }: { events: EVENT_TYPE[] }) {
     const router = useRouter()
     const searchParams = useSearchParams()
-    const selectedEvent = searchParams.get('event') || ''
+    const selectedEvent = searchParams.get('event') ?? ''
 
     const handleEventChange = useCallback(
         (eventTitle: string) => {
@@ -32,7 +32,7 @@ function EventSelector({ events }: { events: EVENT_TYPE[] }) {
         [router, searchParams],
     )
 
-    const initialEvent = events[0]?.name || ''
+    const initialEvent = events[0]?.name ?? ''
 
     React.useEffect(() => {
         if (!selectedEvent && initialEvent) {
@@ -42,7 +42,7 @@ function EventSelector({ events }: { events: EVENT_TYPE[] }) {
 
     return (
         <Select value={selectedEvent} onValueChange={handleEventChange}>
-            <SelectTrigger className='w-full h-14 text-base'>
+            <SelectTrigger className='w-full h-14 text-base dark:text-gray-300'>
                 <SelectValue placeholder='Select an event to view gallery' />
             </SelectTrigger>
             <SelectContent>

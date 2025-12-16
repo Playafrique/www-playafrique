@@ -42,7 +42,7 @@ type RootLayoutProps = {
 
 export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
     return (
-        <html lang='en-GB' className='scroll-smooth dark'>
+        <html lang='en-GB' className='scroll-smooth'>
             <head>
                 <meta charSet='utf-8' />
                 <meta httpEquiv='X-UA-Compatible' content='IE=edge' />
