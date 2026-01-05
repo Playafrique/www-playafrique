@@ -1,37 +1,48 @@
-import React from 'react'
-import Image from 'next/image'
+import Animate from '../atoms/Animate'
+import { ArrowUpRight } from 'lucide-react'
 import Heading from '../atoms/Heading'
 import HeadingTitle from '../molecules/HeadingTitle'
-import ListWrapper from '../atoms/ListWrapper'
-import Animate from '../atoms/Animate'
+import Image from 'next/image'
 import Link from 'next/link'
+import ListWrapper from '../atoms/ListWrapper'
+import React from 'react'
 
-import { ArrowUpRight } from 'lucide-react'
+/**
+ * https://cdn.sanity.io/images/jx89cb4b/production/c5f3044982cee912fc2f7f3147a053883129aa9b-1638x2048.png - popup markets
+
+https://cdn.sanity.io/images/jx89cb4b/production/79226cf76cd89a26fead366b593c23ef6ed447b4-1638x2048.png - cultural props
+
+https://cdn.sanity.io/images/jx89cb4b/production/686b8aac253c27e4459677f7be5c9a14911bdc83-2048x1364.png - Event catering
+
+https://cdn.sanity.io/images/jx89cb4b/production/d6a36a2284f2c40f88df3683214a70d74c22a37c-1638x2048.png - African Themes events
+
+https://cdn.sanity.io/images/jx89cb4b/production/88634f66d8c232a8df96ff69d3d7dde2f1bdfd10-1638x2048.png - Diversity workshops
+ */
 
 const services = [
     {
         title: 'African Themed Events & Festivals',
-        image: '/images/heroimg.jpg',
+        image: 'https://cdn.sanity.io/images/jx89cb4b/production/d6a36a2284f2c40f88df3683214a70d74c22a37c-1638x2048.png',
         href: '/services/african-themed-events-festivals',
     },
     {
         title: 'Event Catering',
-        image: '/images/heroimg.jpg',
+        image: 'https://cdn.sanity.io/images/jx89cb4b/production/686b8aac253c27e4459677f7be5c9a14911bdc83-2048x1364.png',
         href: '/services/event-catering',
     },
     {
         title: 'Cultural Props Rentals',
-        image: '/images/heroimg.jpg',
+        image: 'https://cdn.sanity.io/images/jx89cb4b/production/79226cf76cd89a26fead366b593c23ef6ed447b4-1638x2048.png',
         href: '/services/cultural-props-rentals',
     },
     {
         title: 'Pop-up Markets',
-        image: '/images/heroimg.jpg',
+        image: 'https://cdn.sanity.io/images/jx89cb4b/production/c5f3044982cee912fc2f7f3147a053883129aa9b-1638x2048.png',
         href: '/services/pop-up-markets',
     },
     {
         title: 'Diversity Workshops',
-        image: '/images/heroimg.jpg',
+        image: 'https://cdn.sanity.io/images/jx89cb4b/production/88634f66d8c232a8df96ff69d3d7dde2f1bdfd10-1638x2048.png',
         href: '/services/diversity-workshops',
     },
 ]
@@ -72,16 +83,24 @@ function Services() {
                             <Animate
                                 dir='up'
                                 duration={(idx / 2) * 0.5 + 0.5}
-                                className='group col-span-1 min-h-80 relative flex items-end justify-start w-full h-full rounded-2xl overflow-hidden bg-brand-300'>
-                                <div className='relative z-20 w-full h-full p-6 flex flex-col justify-start'>
+                                className='group lg:first:col-span-2 col-span-1 min-h-80 relative flex items-end justify-start w-full h-full rounded-2xl overflow-hidden'>
+                                <Image
+                                    src={service.image}
+                                    alt={service.title}
+                                    fill
+                                    className='object-cover object-center group-hover:scale-105 transition-transform duration-700'
+                                    sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+                                />
+                                <div className='absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10' />
+                                <div className='relative z-20 w-full h-full p-6 flex flex-col justify-end'>
                                     <Heading
                                         as='h3'
-                                        className='text-xl font-bold max-w-[90%] leading-tight'>
+                                        className='text-base font-medium max-w-[70%] leading-tight text-white'>
                                         {service.title}
                                     </Heading>
                                 </div>
 
-                                <div className='absolute bottom-0 -right-2 bg-black dark:bg-slate-900 w-24 h-20 rounded-tl-[2.5rem] flex items-center justify-center z-20'>
+                                <div className='absolute bottom-0 -right-2 bg-black dark:bg-slate-900 w-20 h-20 rounded-tl-[2.5rem] flex items-center justify-center z-20'>
                                     <Link href={service.href} passHref>
                                         <div className='bg-black dark:bg-slate-900 p-3 rounded-full text-white transform group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform duration-300'>
                                             <ArrowUpRight className='size-6' />

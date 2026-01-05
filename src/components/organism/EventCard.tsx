@@ -16,23 +16,41 @@ type EventCardProps = {
 
 function EventCard({ event, variant = 'default' }: EventCardProps) {
     const activeStatuses = ['published', 'close_sales']
+
+    // Check if event has passed
+    const eventEndDate = event?.end?.unix
+        ? new Date(event.end.unix * 1000)
+        : event?.start?.unix
+          ? new Date(event.start.unix * 1000)
+          : null
+
+    const hasPassed = eventEndDate ? eventEndDate < new Date() : false
+
     return (
         <div
             className={cn(
-                'h-auto flex flex-col justify-between rounded-xl overflow-hidden relative shadow-sm',
+                'h-full flex flex-col justify-between rounded-xl overflow-hidden relative shadow-sm',
                 {
                     'bg-white text-black': variant === 'default',
-                    'bg-slate-800 text-white dark:bg-slate-800':
+                    'bg-slate-900 text-white dark:bg-slate-800':
                         variant === 'dark',
+                    'opacity-75': hasPassed,
                 },
             )}>
+            {hasPassed && (
+                <div className='absolute top-2 right-2 z-10 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg'>
+                    Past Event
+                </div>
+            )}
             <div>
                 <Image
                     width={1000}
                     height={1000}
                     alt={event.name}
                     src={event.images.thumbnail ?? '/images/fallbackimg.png'}
-                    className='w-full h-60 object-cover object-left'
+                    className={cn('w-full h-60 object-cover object-left', {
+                        grayscale: hasPassed,
+                    })}
                 />
                 <div className='w-full bg-[url("/images/pattern.png")] bg-repeat bg-contain bg-center h-4' />
                 <div className='p-2 px-4 space-y-2'>
@@ -61,7 +79,9 @@ function EventCard({ event, variant = 'default' }: EventCardProps) {
                         </div>
                         <div className='flex items-center gap-2'>
                             <MapPin className='w-5 h-5' />
-                            <p className='text-sm'>{event.venue.name}</p>
+                            <p className='text-sm'>
+                                {event.venue.name ?? 'Coming soon'}
+                            </p>
                         </div>
                     </div>
 

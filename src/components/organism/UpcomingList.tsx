@@ -1,27 +1,42 @@
-import React from 'react'
-import HeadingTitle from '../molecules/HeadingTitle'
-import ListWrapper from '../atoms/ListWrapper'
-import { invoke } from '@/lib/invoke'
+import Animate from '../atoms/Animate'
 import { EVENT_TYPE } from '@/lib/types'
 import EventCard from './EventCard'
+import HeadingTitle from '../molecules/HeadingTitle'
+import ListWrapper from '../atoms/ListWrapper'
 import NoResultsFallback from '../molecules/NoResultsFallback'
+import React from 'react'
 import { cn } from '@/lib/utils'
-import Animate from '../atoms/Animate'
+import { invoke } from '@/lib/invoke'
 
 export const revalidate = 60 // revalidate every 60 seconds
+
+function orderEvents(events: EVENT_TYPE[], order: 'asc' | 'desc' = 'desc') {
+    return events.sort((a, b) => {
+        const dateA = new Date(a.start?.iso || '')
+        const dateB = new Date(b.start?.iso || '')
+        return order === 'asc'
+            ? dateA.getTime() - dateB.getTime()
+            : dateB.getTime() - dateA.getTime()
+    })
+}
 
 async function UpcomingList() {
     const { res, error } = await invoke<{ data: EVENT_TYPE[] }>({
         baseUrl: 'events',
-        endpoint: '/events?limit=4',
+        endpoint: '/events',
     })
 
     if (error) {
         throw new Error(error)
     }
 
-    const upcomingEvents =
-        res?.data.filter((evt) => evt.status === 'draft') ?? []
+    const upcomingEvents = orderEvents(
+        res?.data.filter(
+            (evt) =>
+                evt.status === 'draft' && new Date(evt.start.iso) > new Date(),
+        ) ?? [],
+        'asc',
+    )
 
     return (
         <section
@@ -40,10 +55,10 @@ async function UpcomingList() {
                     {
                         'md:grid-cols-1 lg:grid-cols-1 2xl:grid-cols-1':
                             upcomingEvents.length === 0,
-                    }
+                    },
                 )}>
                 <ListWrapper
-                    list={upcomingEvents}
+                    list={upcomingEvents.slice(0, 4)}
                     renderFallback={() => (
                         <Animate dir='up' duration={0.5}>
                             <NoResultsFallback

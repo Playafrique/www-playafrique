@@ -30,7 +30,6 @@ async function GalleryGrid({
             </div>
         )
     }
-
     const resp = await sanityFetch<EVENT_GALLERY>(
         galleryQueries.eventGallery,
         { title: currentEvent.name || '' },

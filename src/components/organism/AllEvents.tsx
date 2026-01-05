@@ -8,49 +8,15 @@ import React from 'react'
 import { cn } from '@/lib/utils'
 import { invoke } from '@/lib/invoke'
 
-function FilterEvents(events: EVENT_TYPE[]) {
-    const currentDate = new Date()
-
-    const upcomingEvents = events.filter((event) => {
-        if (event.start && event.end) {
-            const startDate = new Date(event.start.formatted)
-            const endDate = new Date(event.end.formatted)
-            return endDate >= currentDate
-        } else if (event.start) {
-            const startDate = new Date(event.start.formatted)
-            return startDate >= currentDate
-        }
-        return false
+function orderEvents(events: EVENT_TYPE[], order: 'asc' | 'desc' = 'desc') {
+    return events.sort((a, b) => {
+        const dateA = new Date(a.start?.iso || '')
+        const dateB = new Date(b.start?.iso || '')
+        return order === 'asc'
+            ? dateA.getTime() - dateB.getTime()
+            : dateB.getTime() - dateA.getTime()
     })
-
-    const pastEvents = events.filter((event) => {
-        if (event.start && event.end) {
-            const endDate = new Date(event.end.formatted)
-            return endDate < currentDate
-        } else if (event.start) {
-            const startDate = new Date(event.start.formatted)
-            return startDate < currentDate
-        }
-        return false
-    })
-
-    // Sort upcoming events by start date ascending
-    upcomingEvents.sort((a, b) => {
-        const dateA = new Date(a.start?.formatted || '')
-        const dateB = new Date(b.start?.formatted || '')
-        return dateA.getTime() - dateB.getTime()
-    })
-
-    // Sort past events by end date descending
-    pastEvents.sort((a, b) => {
-        const dateA = new Date(a.end?.formatted || a.start?.formatted || '')
-        const dateB = new Date(b.end?.formatted || b.start?.formatted || '')
-        return dateB.getTime() - dateA.getTime()
-    })
-
-    return { upcomingEvents, pastEvents }
 }
-
 async function AllEvents() {
     const { res, error } = await invoke<{ data: EVENT_TYPE[] }>({
         baseUrl: 'events',
@@ -63,7 +29,7 @@ async function AllEvents() {
         throw new Error(error)
     }
 
-    const events = FilterEvents(
+    const events = orderEvents(
         res?.data.filter((evt) => {
             return activeStatuses.includes(evt.status) && evt.hidden != 'true'
         }) ?? [],
@@ -86,11 +52,11 @@ async function AllEvents() {
                         'col-span-3 grid md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6 h-full gap-y-4',
                         {
                             'md:grid-cols-1 lg:grid-cols-1 2xl:grid-cols-1':
-                                events.pastEvents?.length === 0,
+                                events.length === 0,
                         },
                     )}>
                     <ListWrapper
-                        list={events.pastEvents ?? []}
+                        list={events ?? []}
                         renderFallback={() => (
                             <NoResultsFallback
                                 title='No Events found'
