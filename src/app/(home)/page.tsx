@@ -52,7 +52,6 @@ async function Home() {
                     />
                 </div>
             </section>
-            <div className='w-full bg-[url("/images/pattern.png")] bg-repeat bg-contain bg-center h-6' />
 
             <Suspense fallback={<div>Loading...</div>}>
                 <ErrorHandlerWrapper>

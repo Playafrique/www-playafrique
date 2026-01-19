@@ -1,5 +1,23 @@
 import { defineField, defineType } from 'sanity'
 
+const creativeDisciplines = [
+    'Digital Design & Tech',
+    'Visual Media & Storytelling',
+    'Content & Social Media',
+    'Fashion & Personal Artistry',
+    'Physical Craft & Fine Arts',
+    'Writing & Marketing',
+    'Culinary & Hospitality Arts',
+    'Gaming & Animation',
+    'Space & Environment',
+    'Sound & Performance',
+].map((discipline) => ({ title: discipline, value: discipline }))
+
+const entityTypes = ['Individual', 'Company'].map((entity) => ({
+    title: entity,
+    value: entity.toLowerCase(),
+}))
+
 export const memberSchema = defineType({
     name: 'member',
     title: 'Member',
@@ -39,11 +57,36 @@ export const memberSchema = defineType({
             validation: (Rule) => Rule.required(),
         }),
         defineField({
+            name: 'phone',
+            title: 'Phone',
+            description: 'The phone number of the member.',
+            type: 'string',
+        }),
+        defineField({
             name: 'bio',
             title: 'Bio',
-            description: 'A short bio of the member.',
+            description: 'A `short bio of the member.',
             type: 'text',
-            validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+            name: 'entity',
+            title: 'Entity',
+            description: 'The entity of the member.',
+            type: 'string',
+            options: {
+                list: entityTypes,
+                layout: 'dropdown',
+            },
+        }),
+        defineField({
+            name: 'creativeDiscipline',
+            title: 'Creative Discipline',
+            description: 'The creative discipline of the member.',
+            type: 'string',
+            options: {
+                list: creativeDisciplines,
+                layout: 'dropdown',
+            },
         }),
     ],
     preview: {

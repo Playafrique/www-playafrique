@@ -1,0 +1,24 @@
+{
+    "uid": "playafrique_dev_app",
+    "type": "app",
+    "config": {
+        "description": "An example to demonstrate how to build a static private app with developer projects.",
+        "name": "playafrique-dev-Application",
+        "distribution": "private",
+        "auth": {
+            "type": "static",
+            "requiredScopes": [
+                "oauth",
+                "crm.objects.contacts.read",
+                "crm.objects.contacts.write"
+            ],
+            "optionalScopes": [],
+            "conditionallyRequiredScopes": []
+        },
+        "permittedUrls": {
+            "fetch": ["https://api.hubapi.com", "https://playafrique.co.uk"],
+            "iframe": [],
+            "img": []
+        }
+    }
+}

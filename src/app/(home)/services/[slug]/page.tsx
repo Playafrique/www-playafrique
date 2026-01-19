@@ -7,6 +7,7 @@ import { getServicePageContent, SLUG } from '@/lib/helpers'
 import { ArrowDown } from 'lucide-react'
 import { Metadata, ResolvingMetadata } from 'next'
 import Image from 'next/image'
+import { redirect } from 'next/navigation'
 import React from 'react'
 
 type MetaProps = {
@@ -48,51 +49,58 @@ async function ServicePage({ params }: PageProps) {
     const { slug } = await params
     const service = getServicePageContent(slug as SLUG)
 
+    if (!service) {
+        redirect('/')
+    }
+
     return (
         <main className='flex min-h-screen flex-col items-center'>
-            <section className='w-full bg-green-200 dark:bg-green-950'>
-                <div className='container grid items-center gap-6 md:grid-cols-2'>
-                    <div className=' space-y-6 pt-20 md:py-48'>
+            <section className='w-full relative bg-transparent md:bg-green-200 dark:bg-green-950 grid grid-cols-1 md:grid-cols-2 min-h-[60vh] md:min-h-0'>
+                <div className='absolute inset-0 bg-gradient-to-t from-white/60 via-white/60 to-transparent md:hidden z-10' />
+
+                <div className='container relative z-10 flex flex-col justify-center h-full mx-auto md:max-w-2xl px-6 md:px-12 py-20 md:py-48'>
+                    <div className='space-y-6'>
                         <Heading
                             as='h1'
-                            className='leading-tight tracking-tighter text-center md:text-left'>
+                            className='leading-tight tracking-tighter text-center md:text-left text-4xl md:text-6xl text-gray-900 md:dark:text-white font-bold'>
                             {service?.name}
                         </Heading>
-                        <Text className='max-w-[600px] text-muted-foreground text-center md:text-left'>
+                        <Text className='max-w-[600px] text-muted-foreground text-center md:text-left text-lg md:text-xl mx-auto md:mx-0'>
                             {service?.description}
                         </Text>
-                        <div className='flex flex-col gap-4 sm:flex-row self-center lg:self-start pb-20 md:pb-0'>
+                        <div className='flex flex-col gap-4 sm:flex-row justify-center md:justify-start pt-8 md:pt-0'>
                             <ScrollToComponent
                                 size='lg'
-                                className='max-w-full md:max-w-max'
+                                className='w-full md:w-auto'
                                 elementId='contact-form'>
                                 Make an Inquiry
                                 <ArrowDown className='ml-2 h-4 w-4' />
                             </ScrollToComponent>
                         </div>
                     </div>
-                    <div className='relative aspect-square overflow-hidden hidden md:block'>
-                        <Animate
-                            dir='up'
-                            duration={0.6}
-                            className='col-span-1 lg:col-span-2 w-full relative overflow-hidden shadow-sm min-h-[700px]'>
-                            <Image
-                                fill
-                                src='https://cdn.sanity.io/images/jx89cb4b/production/d0753d8231921ad7068003454d76bcb8340b3013-2400x3600.jpg'
-                                alt='Services visualization'
-                                className='object-cover object-center hover:scale-105 transition-transform duration-700'
-                                sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw'
-                                placeholder='blur'
-                                blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8/+F9PQAI8wNPvd7POQAAAABJRU5ErkJggg=='
-                            />
-                        </Animate>
-                    </div>
+                </div>
+
+                <div className='absolute inset-0 md:relative md:inset-auto h-full w-full overflow-hidden'>
+                    <Animate
+                        dir='up'
+                        duration={0.6}
+                        className='w-full h-full relative'>
+                        <Image
+                            fill
+                            src={service.image.src}
+                            alt={service.image.alt}
+                            className='object-cover object-center'
+                            sizes='(max-width: 768px) 100vw, 50vw'
+                            placeholder='blur'
+                            blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8/+F9PQAI8wNPvd7POQAAAABJRU5ErkJggg=='
+                            priority
+                        />
+                    </Animate>
                 </div>
             </section>
 
             {/* Features Section */}
             <section className='w-full bg-gray-50/90 py-32 relative dark:bg-gray-950'>
-                <div className='w-full bg-[url("/images/pattern.png")] bg-repeat bg-contain bg-center h-6 absolute top-0 left-0 right-0' />
                 <div className='container'>
                     <Heading as='h2' className='mb-8 text-center text-3xl'>
                         Why Choose Our Services

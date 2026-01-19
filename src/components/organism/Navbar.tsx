@@ -25,6 +25,7 @@ import React from 'react'
 import { cn } from '@/lib/utils'
 import { useDisclosure } from '@/hooks/useDisclosure'
 import { usePathname } from 'next/navigation'
+import { SERVICES_CONTENT } from '@/lib/helpers'
 
 const navlinks = [
     {
@@ -43,22 +44,10 @@ const navlinks = [
     {
         name: 'Services',
         href: '/#services',
-        sublinks: [
-            {
-                name: 'African Themed Events & Festivals',
-                href: '/services/african-themed-events-festivals',
-            },
-            { name: 'Event Catering', href: '/services/event-catering' },
-            {
-                name: 'Cultural Props Rentals',
-                href: '/services/cultural-props-rentals',
-            },
-            { name: 'Popup Markets', href: '/services/popup-markets' },
-            {
-                name: 'Diversity Workshops',
-                href: '/services/diversity-workshops',
-            },
-        ],
+        sublinks: SERVICES_CONTENT.map((service) => ({
+            name: service.name,
+            href: `/services/${service.slug}`,
+        })),
     },
     {
         name: 'About Us',

@@ -6,46 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import ListWrapper from '../atoms/ListWrapper'
 import React from 'react'
-
-/**
- * https://cdn.sanity.io/images/jx89cb4b/production/c5f3044982cee912fc2f7f3147a053883129aa9b-1638x2048.png - popup markets
-
-https://cdn.sanity.io/images/jx89cb4b/production/79226cf76cd89a26fead366b593c23ef6ed447b4-1638x2048.png - cultural props
-
-https://cdn.sanity.io/images/jx89cb4b/production/686b8aac253c27e4459677f7be5c9a14911bdc83-2048x1364.png - Event catering
-
-https://cdn.sanity.io/images/jx89cb4b/production/d6a36a2284f2c40f88df3683214a70d74c22a37c-1638x2048.png - African Themes events
-
-https://cdn.sanity.io/images/jx89cb4b/production/88634f66d8c232a8df96ff69d3d7dde2f1bdfd10-1638x2048.png - Diversity workshops
- */
-
-const services = [
-    {
-        title: 'African Themed Events & Festivals',
-        image: 'https://cdn.sanity.io/images/jx89cb4b/production/d6a36a2284f2c40f88df3683214a70d74c22a37c-1638x2048.png',
-        href: '/services/african-themed-events-festivals',
-    },
-    {
-        title: 'Event Catering',
-        image: 'https://cdn.sanity.io/images/jx89cb4b/production/686b8aac253c27e4459677f7be5c9a14911bdc83-2048x1364.png',
-        href: '/services/event-catering',
-    },
-    {
-        title: 'Cultural Props Rentals',
-        image: 'https://cdn.sanity.io/images/jx89cb4b/production/79226cf76cd89a26fead366b593c23ef6ed447b4-1638x2048.png',
-        href: '/services/cultural-props-rentals',
-    },
-    {
-        title: 'Pop-up Markets',
-        image: 'https://cdn.sanity.io/images/jx89cb4b/production/c5f3044982cee912fc2f7f3147a053883129aa9b-1638x2048.png',
-        href: '/services/pop-up-markets',
-    },
-    {
-        title: 'Diversity Workshops',
-        image: 'https://cdn.sanity.io/images/jx89cb4b/production/88634f66d8c232a8df96ff69d3d7dde2f1bdfd10-1638x2048.png',
-        href: '/services/diversity-workshops',
-    },
-]
+import { SERVICES_CONTENT } from '@/lib/helpers'
 
 function Services() {
     return (
@@ -65,9 +26,9 @@ function Services() {
                     duration={0.6}
                     className='col-span-1 lg:col-span-2 bg-gray-100 w-full relative overflow-hidden shadow-sm rounded-3xl h-96 lg:h-full min-h-[400px]'>
                     <Image
+                        fill
                         src='https://cdn.sanity.io/images/jx89cb4b/production/2f04fdf4352f1c59890f209ad7e4a98789378743-2400x3600.jpg'
                         alt='Services visualization'
-                        fill
                         className='object-cover object-center hover:scale-105 transition-transform duration-700'
                         sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw'
                         placeholder='blur'
@@ -77,17 +38,17 @@ function Services() {
 
                 <div className='h-full w-full col-span-1 lg:col-span-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
                     <ListWrapper
-                        list={services}
-                        keyExtractor={(srv) => srv.title}>
+                        list={SERVICES_CONTENT}
+                        keyExtractor={(srv) => srv.slug}>
                         {(service, idx) => (
                             <Animate
                                 dir='up'
                                 duration={(idx / 2) * 0.5 + 0.5}
                                 className='group lg:first:col-span-2 col-span-1 min-h-80 relative flex items-end justify-start w-full h-full rounded-2xl overflow-hidden'>
                                 <Image
-                                    src={service.image}
-                                    alt={service.title}
                                     fill
+                                    src={service.image.src}
+                                    alt={service.image.alt}
                                     className='object-cover object-center group-hover:scale-105 transition-transform duration-700'
                                     sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
                                 />
@@ -96,7 +57,7 @@ function Services() {
                                     <Heading
                                         as='h3'
                                         className='text-base font-medium max-w-[70%] leading-tight text-white'>
-                                        {service.title}
+                                        {service.name}
                                     </Heading>
                                 </div>
 

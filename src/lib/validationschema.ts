@@ -9,7 +9,8 @@ export const contactFormSchema = z.object({
         .min(1, { message: 'Please select an area of interest' }),
     message: z
         .string()
-        .min(10, { message: 'Message must be at least 10 characters' }),
+        .min(10, { message: 'Message must be at least 10 characters' })
+        .optional(),
 })
 
 export const joinFormSchema = z.object({
@@ -20,7 +21,21 @@ export const joinFormSchema = z.object({
         .string()
         .min(2, { message: 'Last name must be at least 2 characters' }),
     email: z.string().email({ message: 'Please enter a valid email address' }),
-    bio: z.string().min(10, { message: 'Bio must be at least 10 characters' }),
+    entity: z.enum(['individual', 'company']).default('individual'),
+    bio: z.string().optional(),
+    creativeDiscipline: z
+        .string()
+        .min(1, { message: 'Please select a creative discipline' }),
+    phone: z
+        .string()
+        .optional()
+        .refine(
+            (value) => {
+                if (!value) return true
+                return /^\+?[0-9]{7,15}$/.test(value)
+            },
+            { message: 'Phone number must be between 7 and 15 digits' },
+        ),
 })
 
 export type contactFormType = z.infer<typeof contactFormSchema>

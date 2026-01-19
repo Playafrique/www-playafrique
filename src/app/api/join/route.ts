@@ -1,18 +1,11 @@
 import { client } from '../../../../sanity/sanity.client'
 import { NextRequest, NextResponse } from 'next/server'
-import { z } from 'zod'
-
-const joinSchema = z.object({
-    firstName: z.string().min(1, 'First name is required'),
-    lastName: z.string().min(1, 'Last name is required'),
-    email: z.string().email('Invalid email address'),
-    bio: z.string().min(1, 'Bio is required'),
-})
+import { joinFormSchema } from '@/lib/validationschema'
 
 export async function POST(req: NextRequest) {
     try {
         const body = await req.json()
-        const parsed = joinSchema.safeParse(body)
+        const parsed = joinFormSchema.safeParse(body)
 
         if (!parsed.success) {
             return NextResponse.json(
@@ -21,7 +14,20 @@ export async function POST(req: NextRequest) {
             )
         }
 
-        const { firstName, lastName, email, bio } = parsed.data
+        const { firstName, lastName, email, bio, entity, creativeDiscipline } =
+            parsed.data
+
+        // check if member already exists
+        const existingMember = await client.fetch(
+            `*[_type == "member" && email == "${email}"][0]`,
+        )
+
+        if (existingMember) {
+            return NextResponse.json(
+                { message: 'Member already exists' },
+                { status: 400 },
+            )
+        }
 
         const slug = `${firstName}-${lastName}`
             .toLowerCase()
@@ -37,6 +43,8 @@ export async function POST(req: NextRequest) {
                 _type: 'slug',
                 current: slug,
             },
+            entity,
+            creativeDiscipline,
         })
 
         return NextResponse.json(
@@ -44,7 +52,6 @@ export async function POST(req: NextRequest) {
             { status: 201 },
         )
     } catch (error) {
-        console.error('Error creating member:', error)
         return NextResponse.json(
             {
                 message: 'Internal Server Error',

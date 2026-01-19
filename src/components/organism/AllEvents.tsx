@@ -38,7 +38,7 @@ async function AllEvents() {
     return (
         <section
             id='events'
-            className='h-auto min-h-[30rem] pt-20 md:py-28 md:pt-28'>
+            className='h-auto min-h-[40rem] pt-20 md:py-28 md:pt-28'>
             <div className='max-w-screen-2xl mx-auto space-y-6 px-6 3xl:px-0'>
                 <Animate dir='up' duration={0.6}>
                     <HeadingTitle
@@ -75,7 +75,6 @@ async function AllEvents() {
                         )}
                     </ListWrapper>
                 </div>
-                {/* <pre>{JSON.stringify(events.pastEvents, null, 2)}</pre> */}
             </div>
         </section>
     )

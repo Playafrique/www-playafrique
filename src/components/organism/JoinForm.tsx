@@ -16,11 +16,49 @@ import {
     FormLabel,
     FormMessage,
 } from '@/components/ui/form'
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '@/components/ui/select'
 import { ArrowUpRight, CheckCircle } from 'lucide-react'
 import Heading from '@components/atoms/Heading'
 import { joinFormSchema, joinFormType } from '@/lib/validationschema'
 import { Alert, AlertDescription, AlertTitle } from '@components/ui/alert'
 import Animate from '@components/atoms/Animate'
+import ListWrapper from '@components/atoms/ListWrapper'
+
+const creativeDisciplines = [
+    { label: 'Digital Design & Tech', value: 'Digital Design & Tech' },
+    {
+        label: 'Visual Media & Storytelling',
+        value: 'Visual Media & Storytelling',
+    },
+    { label: 'Content & Social Media', value: 'Content & Social Media' },
+    {
+        label: 'Fashion & Personal Artistry',
+        value: 'Fashion & Personal Artistry',
+    },
+    {
+        label: 'Physical Craft & Fine Arts',
+        value: 'Physical Craft & Fine Arts',
+    },
+    { label: 'Writing & Marketing', value: 'Writing & Marketing' },
+    {
+        label: 'Culinary & Hospitality Arts',
+        value: 'Culinary & Hospitality Arts',
+    },
+    { label: 'Gaming & Animation', value: 'Gaming & Animation' },
+    { label: 'Space & Environment', value: 'Space & Environment' },
+    { label: 'Sound & Performance', value: 'Sound & Performance' },
+]
+
+const entityTypes = [
+    { label: 'Individual', value: 'individual' },
+    { label: 'Company', value: 'company' },
+]
 
 type Props = {
     defaultValues?: Partial<joinFormType>
@@ -40,6 +78,9 @@ export default function JoinForm({ defaultValues = {}, hideTitle }: Props) {
             lastName: '',
             email: '',
             bio: '',
+            creativeDiscipline: '',
+            phone: '',
+            entity: 'individual',
             ...defaultValues,
         },
     })
@@ -195,6 +236,103 @@ export default function JoinForm({ defaultValues = {}, hideTitle }: Props) {
                         )}
                     />
 
+                    <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+                        <FormField
+                            control={form.control}
+                            name='entity'
+                            render={({ field }) => (
+                                <FormItem className='space-y-2'>
+                                    <FormLabel className='text-base'>
+                                        Entity Type
+                                    </FormLabel>
+                                    <Select
+                                        onValueChange={field.onChange}
+                                        defaultValue={field.value}>
+                                        <FormControl>
+                                            <SelectTrigger className='h-14 bg-gray-50'>
+                                                <SelectValue placeholder='Select entity type' />
+                                            </SelectTrigger>
+                                        </FormControl>
+                                        <SelectContent>
+                                            <ListWrapper
+                                                list={entityTypes}
+                                                keyExtractor={(item) =>
+                                                    item.value
+                                                }>
+                                                {(item) => (
+                                                    <SelectItem
+                                                        value={item.value}>
+                                                        {item.label}
+                                                    </SelectItem>
+                                                )}
+                                            </ListWrapper>
+                                        </SelectContent>
+                                    </Select>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name='creativeDiscipline'
+                            render={({ field }) => (
+                                <FormItem className='space-y-2'>
+                                    <FormLabel className='text-base'>
+                                        Creative Discipline
+                                    </FormLabel>
+                                    <Select
+                                        onValueChange={field.onChange}
+                                        defaultValue={field.value}>
+                                        <FormControl>
+                                            <SelectTrigger className='h-14 bg-gray-50'>
+                                                <SelectValue placeholder='Select a discipline' />
+                                            </SelectTrigger>
+                                        </FormControl>
+                                        <SelectContent>
+                                            <ListWrapper
+                                                list={creativeDisciplines}
+                                                keyExtractor={(item) =>
+                                                    item.value
+                                                }>
+                                                {(item) => (
+                                                    <SelectItem
+                                                        value={item.value}>
+                                                        {item.label}
+                                                    </SelectItem>
+                                                )}
+                                            </ListWrapper>
+                                        </SelectContent>
+                                    </Select>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                    </div>
+
+                    <FormField
+                        name='phone'
+                        control={form.control}
+                        render={({ field }) => (
+                            <FormItem className='space-y-2'>
+                                <FormLabel className='text-base'>
+                                    Phone Number
+                                </FormLabel>
+                                <FormDescription>
+                                    Your phone number (optional)
+                                </FormDescription>
+                                <FormControl>
+                                    <Input
+                                        {...field}
+                                        type='tel'
+                                        placeholder='+44 7123 456789'
+                                        className='h-14 bg-gray-50'
+                                    />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+
                     <FormField
                         control={form.control}
                         name='bio'
@@ -202,7 +340,10 @@ export default function JoinForm({ defaultValues = {}, hideTitle }: Props) {
                             <FormItem className='space-y-2'>
                                 <FormLabel className='text-base'>Bio</FormLabel>
                                 <FormDescription>
-                                    Tell us a little bit about yourself
+                                    Tell us a little bit about{' '}
+                                    {form.watch('entity') === 'individual'
+                                        ? 'yourself'
+                                        : 'your company'}
                                 </FormDescription>
                                 <FormControl>
                                     <Textarea

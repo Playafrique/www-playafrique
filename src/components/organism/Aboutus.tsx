@@ -59,8 +59,6 @@ function Aboutus() {
 
                         <div className='grid grid-cols-1 md:grid-cols-2 gap-6 h-full'>
                             <Card className='rounded-xl shadow-sm bg-white border relative overflow-hidden h-full'>
-                                <div className='w-full bg-[url("/images/pattern.png")] bg-repeat bg-contain bg-center h-5 absolute bottom-0 left-0' />
-
                                 <CardHeader className='flex flex-row items-center gap-3'>
                                     <Rocket className='h-10 w-10 text-orange-500' />
                                     <CardTitle className='text-2xl lg:text-3xl font-bold font-body'>
@@ -82,8 +80,6 @@ function Aboutus() {
                                 <CardFooter />
                             </Card>
                             <Card className='rounded-xl shadow-sm bg-white border relative overflow-hidden h-full'>
-                                <div className='w-full bg-[url("/images/pattern.png")] bg-repeat bg-contain bg-center h-5 absolute bottom-0 left-0' />
-
                                 <CardHeader className='flex flex-row items-center gap-3'>
                                     <Target className='h-10 w-10 text-teal-500' />
                                     <CardTitle className='text-2xl lg:text-3xl font-bold font-body'>

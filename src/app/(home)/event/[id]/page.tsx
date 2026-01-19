@@ -99,7 +99,6 @@ async function EventPage({ params }: { params: Promise<{ id: string }> }) {
                                 src={event?.images?.thumbnail ?? ''}
                                 className='w-full h-[40vh] object-cover object-center'
                             />
-                            <div className='w-full bg-[url("/images/pattern.png")] bg-repeat bg-contain bg-center h-6' />
 
                             <Button
                                 asChild

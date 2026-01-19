@@ -38,9 +38,9 @@ function EventCard({ event, variant = 'default' }: EventCardProps) {
                 },
             )}>
             {hasPassed && (
-                <div className='absolute top-2 right-2 z-10 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg'>
+                <span className='absolute top-2 right-2 z-10 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg'>
                     Past Event
-                </div>
+                </span>
             )}
             <div>
                 <Image
@@ -48,11 +48,13 @@ function EventCard({ event, variant = 'default' }: EventCardProps) {
                     height={1000}
                     alt={event.name}
                     src={event.images.thumbnail ?? '/images/fallbackimg.png'}
-                    className={cn('w-full h-60 object-cover object-left', {
-                        grayscale: hasPassed,
-                    })}
+                    className={cn(
+                        'w-full h-auto min-h-60 object-cover object-left',
+                        {
+                            grayscale: hasPassed,
+                        },
+                    )}
                 />
-                <div className='w-full bg-[url("/images/pattern.png")] bg-repeat bg-contain bg-center h-4' />
                 <div className='p-2 px-4 space-y-2'>
                     <Heading
                         as='h3'
