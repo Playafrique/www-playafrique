@@ -12,6 +12,7 @@ export async function POST(req: Request) {
         entity_type: body.entity,
         creative_discipline: body.creativeDiscipline,
         hs_content_membership_notes: body.bio,
+        location: body.location,
     }
 
     try {

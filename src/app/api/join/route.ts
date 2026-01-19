@@ -22,6 +22,7 @@ export async function POST(req: NextRequest) {
             entity,
             creativeDiscipline,
             phone,
+            location,
         } = parsed.data
 
         // check if member already exists
@@ -53,6 +54,7 @@ export async function POST(req: NextRequest) {
             entity,
             creativeDiscipline,
             phone,
+            location,
         })
 
         return NextResponse.json(

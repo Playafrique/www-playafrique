@@ -88,6 +88,12 @@ export const memberSchema = defineType({
                 layout: 'dropdown',
             },
         }),
+        defineField({
+            name: 'location',
+            title: 'Location',
+            description: 'The location of the member or company (optional)',
+            type: 'string',
+        }),
     ],
     preview: {
         select: {

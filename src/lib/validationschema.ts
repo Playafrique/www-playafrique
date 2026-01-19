@@ -35,6 +35,7 @@ export const joinFormSchema = z.object({
             },
             { message: 'Phone number must be between 7 and 15 digits' },
         ),
+    location: z.string().optional(),
 })
 
 export type contactFormType = z.infer<typeof contactFormSchema>

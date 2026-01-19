@@ -81,6 +81,7 @@ export default function JoinForm({ defaultValues = {}, hideTitle }: Props) {
             creativeDiscipline: '',
             phone: '',
             entity: 'individual',
+            location: '',
             ...defaultValues,
         },
     })
@@ -308,30 +309,57 @@ export default function JoinForm({ defaultValues = {}, hideTitle }: Props) {
                         />
                     </div>
 
-                    <FormField
-                        name='phone'
-                        control={form.control}
-                        render={({ field }) => (
-                            <FormItem className='space-y-2'>
-                                <FormLabel className='text-base'>
-                                    Phone Number
-                                </FormLabel>
-                                <FormDescription>
-                                    Your phone number (optional)
-                                </FormDescription>
-                                <FormControl>
-                                    <Input
-                                        {...field}
-                                        type='tel'
-                                        placeholder='+44 7123 456789'
-                                        className='h-14 bg-gray-50'
-                                    />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
+                    <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+                        <FormField
+                            name='location'
+                            control={form.control}
+                            render={({ field }) => (
+                                <FormItem className='space-y-2'>
+                                    <FormLabel className='text-base'>
+                                        Location
+                                    </FormLabel>
+                                    <FormDescription>
+                                        {form.watch('entity') === 'individual'
+                                            ? 'Your location (optional)'
+                                            : 'Company location (optional)'}
+                                    </FormDescription>
+                                    <FormControl>
+                                        <Input
+                                            {...field}
+                                            type='text'
+                                            placeholder='Location'
+                                            className='h-14 bg-gray-50'
+                                        />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
 
+                        <FormField
+                            name='phone'
+                            control={form.control}
+                            render={({ field }) => (
+                                <FormItem className='space-y-2'>
+                                    <FormLabel className='text-base'>
+                                        Phone Number
+                                    </FormLabel>
+                                    <FormDescription>
+                                        Your phone number (optional)
+                                    </FormDescription>
+                                    <FormControl>
+                                        <Input
+                                            {...field}
+                                            type='tel'
+                                            placeholder='+44 7123 456789'
+                                            className='h-14 bg-gray-50'
+                                        />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                    </div>
                     <FormField
                         control={form.control}
                         name='bio'
