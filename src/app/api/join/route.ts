@@ -14,8 +14,15 @@ export async function POST(req: NextRequest) {
             )
         }
 
-        const { firstName, lastName, email, bio, entity, creativeDiscipline } =
-            parsed.data
+        const {
+            firstName,
+            lastName,
+            email,
+            bio,
+            entity,
+            creativeDiscipline,
+            phone,
+        } = parsed.data
 
         // check if member already exists
         const existingMember = await client.fetch(
@@ -45,6 +52,7 @@ export async function POST(req: NextRequest) {
             },
             entity,
             creativeDiscipline,
+            phone,
         })
 
         return NextResponse.json(
