@@ -220,8 +220,7 @@ export default function JoinForm({ defaultValues = {}, hideTitle }: Props) {
                                     Email
                                 </FormLabel>
                                 <FormDescription>
-                                    We&apos;ll never share your email with
-                                    anyone else.
+                                    Please provide a valid email address.
                                 </FormDescription>
                                 <FormControl>
                                     <Input
