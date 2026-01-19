@@ -9,8 +9,7 @@ export const contactFormSchema = z.object({
         .min(1, { message: 'Please select an area of interest' }),
     message: z
         .string()
-        .min(10, { message: 'Message must be at least 10 characters' })
-        .optional(),
+        .min(10, { message: 'Message must be at least 10 characters' }),
 })
 
 export const joinFormSchema = z.object({
